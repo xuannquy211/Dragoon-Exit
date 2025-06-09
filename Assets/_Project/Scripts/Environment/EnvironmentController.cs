@@ -13,8 +13,9 @@ public class EnvironmentController : MonoBehaviour
     public Transform NextEnvironmentTarget => nextEnvironmentTarget;
     public Transform BackEnvironmentTarget => backEnvironmentTarget;
 
-    public void ActiveAbnormality(int index)
+    public void ActiveAbnormality()
     {
+        var index = Random.Range(0, abnormalities.Length);
         var totalAbnormalities = abnormalities.Length;
         for (var i = 0; i < totalAbnormalities; i++)
         {
