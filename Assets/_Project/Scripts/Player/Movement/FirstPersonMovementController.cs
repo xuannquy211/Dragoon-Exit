@@ -29,6 +29,7 @@ public class FirstPersonMovementController : MonoBehaviour
         var moveSpeed = inputProvider.IsRunning() ? runningSpeed : walkingSpeed;
         Vector3 targetVelocity = moveInput * moveSpeed;
         Vector3 velocity = rb.velocity;
+        if (velocity.magnitude > targetVelocity.magnitude) return;
         Vector3 velocityChange = targetVelocity - velocity;
         velocityChange.y = 0f;
 
