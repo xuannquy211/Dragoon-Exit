@@ -5,6 +5,8 @@ public class EnvironmentController : MonoBehaviour
 {
     [SerializeField] private Transform nextEnvironmentTarget;
     [SerializeField] private Transform backEnvironmentTarget;
+    [SerializeField] private Transform nextDestinationTarget;
+    [SerializeField] private Transform backDestinationTarget;
     
     [Space(10)]
     [Header("========== Abnormalities ==========")]
@@ -12,6 +14,8 @@ public class EnvironmentController : MonoBehaviour
     
     public Transform NextEnvironmentTarget => nextEnvironmentTarget;
     public Transform BackEnvironmentTarget => backEnvironmentTarget;
+    public Transform NextDestinationTarget => nextDestinationTarget;
+    public Transform BackDestinationTarget => backDestinationTarget;
 
     public void ActiveAbnormality()
     {
