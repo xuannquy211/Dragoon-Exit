@@ -10,11 +10,18 @@ public class EnvironmentManager : MonoBehaviour
 
     private readonly List<EnvironmentController> _environments = new List<EnvironmentController>();
     private bool _isHavingAbnormality = false;
-    private int _currentWaveIndex = 0;
     private Transform _destination;
+
+    private int CurrentWaveIndex
+    {
+        get => UserData.CurrentWaveIndex;
+        set => UserData.CurrentWaveIndex = value;
+    }
 
     private void Start()
     {
+        Debug.LogError(CurrentWaveIndex);
+        
         FirstInitEnvironment();
         RandomAbnormality();
     }
@@ -132,19 +139,19 @@ public class EnvironmentManager : MonoBehaviour
         {
             if (_isHavingAbnormality) OnTrueWay();
             else OnWrongWay();
-            if (_currentWaveIndex > Configs.TARGET_WAVE) return;
+            if (CurrentWaveIndex > Configs.TARGET_WAVE) return;
             ShiftToBack();
         }
         else
         {
             if (_isHavingAbnormality) OnWrongWay();
             else OnTrueWay();
-            if (_currentWaveIndex > Configs.TARGET_WAVE) return;
+            if (CurrentWaveIndex > Configs.TARGET_WAVE) return;
             ShiftToNext();
         }
 
         RandomAbnormality();
-        if (_currentWaveIndex != Configs.TARGET_WAVE)
+        if (CurrentWaveIndex != Configs.TARGET_WAVE)
         {
             if(_destination) _destination.gameObject.SetActive(false);
             return;
@@ -173,6 +180,11 @@ public class EnvironmentManager : MonoBehaviour
         }
     }
 
+    public void Win()
+    {
+        CurrentWaveIndex = 0;
+    }
+
     private void RandomAbnormality()
     {
         var centerEnvironment = GetCenterEnvironment();
@@ -186,15 +198,15 @@ public class EnvironmentManager : MonoBehaviour
 
     private void OnTrueWay()
     {
-        if (_currentWaveIndex > Configs.TARGET_WAVE) return;
-        _currentWaveIndex++;
-        Debug.Log(_currentWaveIndex);
+        if (CurrentWaveIndex > Configs.TARGET_WAVE) return;
+        CurrentWaveIndex++;
+        Debug.Log(CurrentWaveIndex);
     }
 
     private void OnWrongWay()
     {
-        _currentWaveIndex = 0;
-        Debug.Log(_currentWaveIndex);
+        CurrentWaveIndex = 0;
+        Debug.Log(CurrentWaveIndex);
     }
 
     private void OnDrawGizmos()
