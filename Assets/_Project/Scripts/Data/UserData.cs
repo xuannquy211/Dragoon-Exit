@@ -1,11 +1,15 @@
 using System;
-using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class UserData
+[Serializable]
+public class UserData : DataPref<UserData>
 {
+    public List<int> AbnormalitiesUsed;
+    
     private const string CurrentWaveIndexKey = "CurrentWaveIndex";
-    private const string AbnormalityKey = "Abnormality";
+    private const string IsFirstTimeKey = "IsFirstTime";
+    private const string SessionCountKey = "SessionCount";
 
     public static int CurrentWaveIndex
     {
@@ -13,21 +17,41 @@ public class UserData
         set => PlayerPrefs.SetInt(CurrentWaveIndexKey, value);
     }
 
-    public static int[] AbnormalitiesUsed
+    public static bool IsFirstTime
     {
-        get
-        {
-            if (PlayerPrefs.HasKey(AbnormalityKey))
-                return JsonUtility.FromJson<int[]>(PlayerPrefs.GetString(AbnormalityKey, ""));
-            return Array.Empty<int>();
-        }
-        set => PlayerPrefs.SetString(AbnormalityKey, JsonUtility.ToJson(value));
+        get => PlayerPrefs.GetInt(IsFirstTimeKey, -1) < 0;
+        set => PlayerPrefs.SetInt(IsFirstTimeKey, value ? 1 : 0);
     }
 
-    public static void AddAbnormalityUsed(int abnormalityIndex)
+    public static int SessionCount
     {
-        var abnormalitiesUsed = AbnormalitiesUsed.ToList();
-        abnormalitiesUsed.Add(abnormalityIndex);
-        AbnormalitiesUsed = abnormalitiesUsed.ToArray();
+        get => PlayerPrefs.GetInt(SessionCountKey, 0);
+        set => PlayerPrefs.SetInt(SessionCountKey, value);
+    }
+
+    public UserData()
+    {
+        AbnormalitiesUsed = new List<int>();
+    }
+
+    public static List<int> GetAbnormalitiesUsed()
+    {
+        return GetData().AbnormalitiesUsed;
+    }
+
+    public static void AddAbnormalityUsed(int abnormality)
+    {
+        var data = GetData();
+        data.AbnormalitiesUsed.Add(abnormality);
+        SaveData();
+        
+        GameSignal.ADD_ABNORMALITY.Notify(abnormality);
+    }
+
+    public static void ClearAbnormalityUsed()
+    {
+        var data = GetData();
+        data.AbnormalitiesUsed.Clear();
+        SaveData();
     }
 }

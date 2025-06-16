@@ -11,6 +11,9 @@ public class EnvironmentManager : MonoBehaviour
     private readonly List<EnvironmentController> _environments = new List<EnvironmentController>();
     private bool _isHavingAbnormality = false;
     private Transform _destination;
+    private int _totalPreviewMap = 2;
+    
+    public static List<int> AbnormalitiesSeen = new List<int>();
 
     private int CurrentWaveIndex
     {
@@ -20,17 +23,25 @@ public class EnvironmentManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.LogError(CurrentWaveIndex);
-        
         FirstInitEnvironment();
-        RandomAbnormality();
+        if(!UserData.IsFirstTime) RandomAbnormality();
+        else
+        {
+            _environments[0].ClearAbnormalities();
+            _environments[1].ClearAbnormalities();
+            _environments[2].ClearAbnormalities();
+        }
+
+        UserData.SessionCount++;
     }
 
     private void FirstInitEnvironment()
     {
+        var abnormalityUsed = UserData.GetAbnormalitiesUsed();
         _environments.Clear();
 
         var centerEnvironment = Instantiate(environmentPrefab, transform);
+        centerEnvironment.InitAbnormality(abnormalityUsed);
         _environments.Add(centerEnvironment);
         centerEnvironment.gameObject.name = "CenterEnvironment";
 
@@ -39,11 +50,13 @@ public class EnvironmentManager : MonoBehaviour
                            backRotation * Vector3.forward;
 
         var backEnvironment = Instantiate(environmentPrefab, backPosition, backRotation, transform);
+        backEnvironment.InitAbnormality(abnormalityUsed);
         _environments.Insert(0, backEnvironment);
         backEnvironment.gameObject.name = "BackEnvironment";
 
         var nextPosition = centerEnvironment.NextEnvironmentTarget.position;
         var nextEnvironment = Instantiate(environmentPrefab, nextPosition, Quaternion.identity, transform);
+        nextEnvironment.InitAbnormality(abnormalityUsed);
         _environments.Add(nextEnvironment);
         nextEnvironment.gameObject.name = "NextEnvironment";
     }
@@ -150,7 +163,13 @@ public class EnvironmentManager : MonoBehaviour
             ShiftToNext();
         }
 
-        RandomAbnormality();
+        if (UserData.IsFirstTime)
+        {
+            _totalPreviewMap--;
+            if (_totalPreviewMap > 0) return;
+        }
+        else RandomAbnormality();
+        
         if (CurrentWaveIndex != Configs.TARGET_WAVE)
         {
             if(_destination) _destination.gameObject.SetActive(false);

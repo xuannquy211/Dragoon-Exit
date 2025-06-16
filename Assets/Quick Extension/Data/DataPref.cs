@@ -38,7 +38,7 @@ public abstract class DataPref<T> where T : class, new()
         var value = PlayerPrefs.GetString(key);
         if (!string.IsNullOrEmpty(value))
         {
-            return Decrypt(value);
+            return value;
         }
 
         return defaultStr;
@@ -46,40 +46,6 @@ public abstract class DataPref<T> where T : class, new()
 
     private static void SetString(string key, string value)
     {
-        PlayerPrefs.SetString(key, Encrypt(value));
-    }
-    
-    private static string Encrypt(string decodedStr)
-    {
-        byte[] data = Encoding.UTF8.GetBytes(decodedStr);
-        using (AesCryptoServiceProvider csp = new AesCryptoServiceProvider())
-        {
-            csp.KeySize = 256;
-            csp.BlockSize = 128;
-            csp.Key = keyHash;
-            csp.Padding = PaddingMode.PKCS7;
-            csp.Mode = CipherMode.ECB;
-
-            using (ICryptoTransform encrypter = csp.CreateEncryptor())
-            {
-                var arr = encrypter.TransformFinalBlock(data, 0, data.Length);
-                return Convert.ToBase64String(arr);
-            }
-        }
-    }
-
-    private static string Decrypt(string encodedStr)
-    {
-        var data = Convert.FromBase64String(encodedStr);
-        using var csp = new AesCryptoServiceProvider();
-        csp.KeySize = 256;
-        csp.BlockSize = 128;
-        csp.Key = keyHash;
-        csp.Padding = PaddingMode.PKCS7;
-        csp.Mode = CipherMode.ECB;
-
-        using var decrypter = csp.CreateDecryptor();
-        var arr = decrypter.TransformFinalBlock(data, 0, data.Length);
-        return Encoding.UTF8.GetString(arr);
+        PlayerPrefs.SetString(key, value);
     }
 }
