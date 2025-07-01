@@ -6,13 +6,14 @@ public class EnvironmentManager : MonoBehaviour
     [SerializeField] private EnvironmentController environmentPrefab;
     [SerializeField] private Transform player;
     [SerializeField] private Transform destinationPrefab;
-    [SerializeField] private float environmentLength = 80f;
+    [SerializeField] private float environmentWidth = 80f;
+    [SerializeField] private Vector3 centerOffset;
 
     private readonly List<EnvironmentController> _environments = new List<EnvironmentController>();
     private bool _isHavingAbnormality = false;
     private Transform _destination;
     private int _totalPreviewMap = 2;
-    
+
     public static List<int> AbnormalitiesSeen = new List<int>();
 
     private int CurrentWaveIndex
@@ -24,7 +25,7 @@ public class EnvironmentManager : MonoBehaviour
     private void Start()
     {
         FirstInitEnvironment();
-        if(!UserData.IsFirstTime) RandomAbnormality();
+        if (!UserData.IsFirstTime) RandomAbnormality();
         else
         {
             _environments[0].ClearAbnormalities();
@@ -45,11 +46,11 @@ public class EnvironmentManager : MonoBehaviour
         _environments.Add(centerEnvironment);
         centerEnvironment.gameObject.name = "CenterEnvironment";
 
-        var backRotation = Quaternion.Euler(0f, 180f, 0f);
-        var backPosition = centerEnvironment.BackEnvironmentTarget.position +
-                           backRotation * Vector3.forward;
+        var backRotation = new Quaternion(0f, 1f, 0f, 0f);
+        var backPosition = centerEnvironment.BackEnvironmentTarget.position;
 
         var backEnvironment = Instantiate(environmentPrefab, backPosition, backRotation, transform);
+        
         backEnvironment.InitAbnormality(abnormalityUsed);
         _environments.Insert(0, backEnvironment);
         backEnvironment.gameObject.name = "BackEnvironment";
@@ -70,11 +71,13 @@ public class EnvironmentManager : MonoBehaviour
         _environments.RemoveAt(0);
 
         var currentCenter = _environments[0];
+
         var nextEuler = currentCenter.transform.eulerAngles;
-        var backEuler = currentCenter.transform.eulerAngles + Vector3.up * 180f;
+        var backEuler = Mathf.Abs(currentCenter.transform.rotation.y - 1);
         oldBack.transform.eulerAngles = nextEuler;
         oldBack.transform.position = currentCenter.NextEnvironmentTarget.position;
-        oldCenter.transform.eulerAngles = backEuler;
+        oldCenter.transform.rotation = new Quaternion(0f, backEuler, 0f, 0f);
+        oldCenter.transform.position = currentCenter.BackEnvironmentTarget.position;
 
         _environments.Insert(0, oldCenter);
         _environments.Add(oldBack);
@@ -82,7 +85,7 @@ public class EnvironmentManager : MonoBehaviour
         ActiveEnvironment();
         UpdateHolderToCenter();
         GameSignal.MOVE_TO_ENVIRONMENT.Notify(_environments[1]);
-        
+
         UpdateEnvironmentNames();
     }
 
@@ -95,8 +98,11 @@ public class EnvironmentManager : MonoBehaviour
 
         var currentCenter = _environments[0];
         var nextEuler = currentCenter.transform.eulerAngles;
+        var backEuler = Mathf.Abs(currentCenter.transform.rotation.y - 1);
         oldNext.transform.eulerAngles = nextEuler;
         oldNext.transform.position = currentCenter.NextEnvironmentTarget.position;
+        oldCenter.transform.rotation = new Quaternion(0f, backEuler, 0f, 0f);
+        oldCenter.transform.position = currentCenter.BackEnvironmentTarget.position;
 
         _environments.Insert(0, oldCenter);
         _environments.Add(oldNext);
@@ -104,7 +110,7 @@ public class EnvironmentManager : MonoBehaviour
         ActiveEnvironment();
         UpdateHolderToCenter();
         GameSignal.MOVE_TO_ENVIRONMENT.Notify(_environments[1]);
-        
+
         UpdateEnvironmentNames();
     }
 
@@ -141,15 +147,18 @@ public class EnvironmentManager : MonoBehaviour
     private void FixedUpdate()
     {
         var centerEnvironment = GetCenterEnvironment();
-        var centerEnvironmentPosition = centerEnvironment.transform.position;
-        if (Vector3.Distance(player.position, centerEnvironmentPosition) < environmentLength) return;
+        var offset =  1f - 2f * centerEnvironment.transform.rotation.y;
+        var centerEnvironmentPosition = centerEnvironment.transform.position + centerOffset * offset;
+        if (Mathf.Abs(player.position.x - centerEnvironmentPosition.x) < environmentWidth) return;
 
-        var centerEnvironmentForward = centerEnvironment.transform.forward;
+        var centerEnvironmentForward = centerEnvironment.transform.right;
         var direction = Vector3.Normalize(player.position - centerEnvironmentPosition);
         var dot = Vector3.Dot(centerEnvironmentForward, direction);
 
         if (dot < 0)
         {
+            Debug.Log("Back Environment");
+
             if (_isHavingAbnormality) OnTrueWay();
             else OnWrongWay();
             if (CurrentWaveIndex > Configs.TARGET_WAVE) return;
@@ -157,6 +166,8 @@ public class EnvironmentManager : MonoBehaviour
         }
         else
         {
+            Debug.Log("Next Environment");
+
             if (_isHavingAbnormality) OnWrongWay();
             else OnTrueWay();
             if (CurrentWaveIndex > Configs.TARGET_WAVE) return;
@@ -169,10 +180,10 @@ public class EnvironmentManager : MonoBehaviour
             if (_totalPreviewMap > 0) return;
         }
         else RandomAbnormality();
-        
+
         if (CurrentWaveIndex != Configs.TARGET_WAVE)
         {
-            if(_destination) _destination.gameObject.SetActive(false);
+            if (_destination) _destination.gameObject.SetActive(false);
             return;
         }
 
@@ -232,7 +243,8 @@ public class EnvironmentManager : MonoBehaviour
     {
         if (_environments == null || _environments.Count == 0) return;
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(GetCenterEnvironment().transform.position,
-            new Vector3(environmentLength, environmentLength, environmentLength * 2f));
+        var offset = 1f - 2f * GetCenterEnvironment().transform.rotation.y;
+        Gizmos.DrawWireCube(GetCenterEnvironment().transform.position + centerOffset * offset,
+            new Vector3(environmentWidth * 2f, environmentWidth, environmentWidth));
     }
 }
