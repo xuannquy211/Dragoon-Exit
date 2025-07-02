@@ -129,6 +129,7 @@ public class EnvironmentManager : MonoBehaviour
         for (var i = 0; i < totalEnvironments; i++)
         {
             _environments[i].gameObject.SetActive(true);
+            _environments[i].ReInit();
         }
     }
 
@@ -159,7 +160,10 @@ public class EnvironmentManager : MonoBehaviour
         var offset =  1f - 2f * centerEnvironment.transform.rotation.y;
         var centerEnvironmentPosition = centerEnvironment.transform.position + centerOffset * offset;
         if (Mathf.Abs(player.position.x - centerEnvironmentPosition.x) < environmentWidth) return;
+        if (Mathf.Abs(player.position.y - centerEnvironmentPosition.y) > environmentWidth / 2f) return;
 
+        Debug.Log($"{Mathf.Abs(player.position.y - centerEnvironmentPosition.y)}, {environmentWidth / 2f}");
+        
         var centerEnvironmentForward = centerEnvironment.transform.right;
         var direction = Vector3.Normalize(player.position - centerEnvironmentPosition);
         var dot = Vector3.Dot(centerEnvironmentForward, direction);

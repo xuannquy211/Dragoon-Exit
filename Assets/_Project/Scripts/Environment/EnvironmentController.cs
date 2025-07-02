@@ -9,6 +9,7 @@ public class EnvironmentController : MonoBehaviour
     [SerializeField] private Transform backEnvironmentTarget;
     [SerializeField] private Transform nextDestinationTarget;
     [SerializeField] private Transform backDestinationTarget;
+    [SerializeField] private GameObject girlTrigger;
 
     [Space(10)] [Header("========== Abnormalities ==========")] [SerializeField]
     private Abnormality[] abnormalities;
@@ -82,6 +83,11 @@ public class EnvironmentController : MonoBehaviour
         {
             abnormalities[i].Deactive();
         }
+    }
+
+    public void ReInit()
+    {
+        girlTrigger.SetActive(true);
     }
 
     private void OnDestroy()
