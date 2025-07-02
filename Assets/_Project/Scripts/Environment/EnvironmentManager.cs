@@ -8,11 +8,11 @@ public class EnvironmentManager : MonoBehaviour
     [SerializeField] private Transform destinationPrefab;
     [SerializeField] private float environmentWidth = 80f;
     [SerializeField] private Vector3 centerOffset;
+    [SerializeField] private int _totalPreviewMap = 2;
 
     private readonly List<EnvironmentController> _environments = new List<EnvironmentController>();
     private bool _isHavingAbnormality = false;
     private Transform _destination;
-    private int _totalPreviewMap = 2;
 
     public static List<int> AbnormalitiesSeen = new List<int>();
 
@@ -60,6 +60,8 @@ public class EnvironmentManager : MonoBehaviour
         nextEnvironment.InitAbnormality(abnormalityUsed);
         _environments.Add(nextEnvironment);
         nextEnvironment.gameObject.name = "NextEnvironment";
+        
+        player.SetParent(centerEnvironment.transform);
     }
 
 
@@ -71,6 +73,9 @@ public class EnvironmentManager : MonoBehaviour
         _environments.RemoveAt(0);
 
         var currentCenter = _environments[0];
+        player.SetParent(currentCenter.transform);
+        currentCenter.transform.position = Vector3.zero;
+        currentCenter.transform.rotation = Quaternion.identity;
 
         var nextEuler = currentCenter.transform.eulerAngles;
         var backEuler = Mathf.Abs(currentCenter.transform.rotation.y - 1);
@@ -97,6 +102,10 @@ public class EnvironmentManager : MonoBehaviour
         _environments.RemoveAt(1);
 
         var currentCenter = _environments[0];
+        player.SetParent(currentCenter.transform);
+        currentCenter.transform.position = Vector3.zero;
+        currentCenter.transform.rotation = Quaternion.identity;
+        
         var nextEuler = currentCenter.transform.eulerAngles;
         var backEuler = Mathf.Abs(currentCenter.transform.rotation.y - 1);
         oldNext.transform.eulerAngles = nextEuler;
@@ -157,8 +166,6 @@ public class EnvironmentManager : MonoBehaviour
 
         if (dot < 0)
         {
-            Debug.Log("Back Environment");
-
             if (_isHavingAbnormality) OnTrueWay();
             else OnWrongWay();
             if (CurrentWaveIndex > Configs.TARGET_WAVE) return;
@@ -166,8 +173,6 @@ public class EnvironmentManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Next Environment");
-
             if (_isHavingAbnormality) OnWrongWay();
             else OnTrueWay();
             if (CurrentWaveIndex > Configs.TARGET_WAVE) return;
@@ -177,7 +182,12 @@ public class EnvironmentManager : MonoBehaviour
         if (UserData.IsFirstTime)
         {
             _totalPreviewMap--;
-            if (_totalPreviewMap > 0) return;
+            if (_totalPreviewMap > 0)
+            {
+                Debug.Log("TotalPreviewMap: " + _totalPreviewMap);
+                return;
+            }
+            UserData.IsFirstTime = false;
         }
         else RandomAbnormality();
 
@@ -228,6 +238,7 @@ public class EnvironmentManager : MonoBehaviour
 
     private void OnTrueWay()
     {
+        if(UserData.IsFirstTime) return;
         if (CurrentWaveIndex > Configs.TARGET_WAVE) return;
         CurrentWaveIndex++;
         Debug.Log(CurrentWaveIndex);
@@ -235,6 +246,7 @@ public class EnvironmentManager : MonoBehaviour
 
     private void OnWrongWay()
     {
+        if(UserData.IsFirstTime) return;
         CurrentWaveIndex = 0;
         Debug.Log(CurrentWaveIndex);
     }
