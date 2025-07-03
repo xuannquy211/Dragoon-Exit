@@ -10,6 +10,8 @@ public class EnvironmentController : MonoBehaviour
     [SerializeField] private Transform nextDestinationTarget;
     [SerializeField] private Transform backDestinationTarget;
     [SerializeField] private GameObject girlTrigger;
+    [SerializeField] private Transform girl, girlStartPoint;
+    [SerializeField] private GirlController girlController;
 
     [Space(10)] [Header("========== Abnormalities ==========")] [SerializeField]
     private Abnormality[] abnormalities;
@@ -52,6 +54,7 @@ public class EnvironmentController : MonoBehaviour
     {
         var randomIndex = Random.Range(0, _abnormalitiesIndices.Count);
         var index = _abnormalitiesIndices[randomIndex];
+        Debug.Log($"Abnormality: {index}");
         var totalAbnormalities = abnormalities.Length;
         for (var i = 0; i < totalAbnormalities; i++)
         {
@@ -88,8 +91,17 @@ public class EnvironmentController : MonoBehaviour
     public void ReInit()
     {
         girlTrigger.SetActive(true);
+        girl.position = girlStartPoint.position;
+        girl.forward = Vector3.forward;
+        girlController.SetAnim("Walking");
     }
 
+    [Button]
+    public void ActiveAbnormality(int index)
+    {
+        abnormalities[index].Active();
+    }
+    
     private void OnDestroy()
     {
         GameSignal.ADD_ABNORMALITY.RemoveListener(OnAddAbnormalityUsed);

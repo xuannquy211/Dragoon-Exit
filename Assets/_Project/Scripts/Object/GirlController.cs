@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GirlController : MonoBehaviour
 {
-    [SerializeField] private Animator _animator;
+    [SerializeField] private Animator animator;
     [SerializeField] private Transform startPoint;
     [SerializeField] private Transform endPoint;
     [SerializeField] private AnimationCurve curve;
@@ -15,14 +15,24 @@ public class GirlController : MonoBehaviour
     private float _currentProgress;
     private Vector3 _direction;
     private Vector3 _per;
-    
+
+    public float Speed
+    {
+        set
+        {
+            speed = value;
+            var scale = value / 0.02f;
+            animator.speed = scale;
+        }
+    }
+
     public void ActiveWalking()
     {
         if(_isWalking) return;
         _isWalking = true;
         _currentProgress = 0f;
         transform.position = startPoint.position;
-        _animator.Play("Walking");
+        animator.Play("Walking");
         
         _direction = endPoint.position - startPoint.position;
         _per = Vector3.Cross(_direction, crossAxis).normalized;
@@ -34,7 +44,7 @@ public class GirlController : MonoBehaviour
         
         if (_currentProgress >= 1f)
         {
-            _animator.Play("Idle");
+            animator.Play("Idle");
             transform.position = endPoint.position;
             _isWalking = false;
             return;
@@ -82,5 +92,10 @@ public class GirlController : MonoBehaviour
             Gizmos.DrawLine(lastPoint, point);
             lastPoint = point;
         }
+    }
+
+    public void SetAnim(string anim)
+    {
+        animator.Play(anim);
     }
 }

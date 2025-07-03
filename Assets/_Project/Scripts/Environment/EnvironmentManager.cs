@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnvironmentManager : MonoBehaviour
 {
@@ -20,6 +22,13 @@ public class EnvironmentManager : MonoBehaviour
     {
         get => UserData.CurrentWaveIndex;
         set => UserData.CurrentWaveIndex = value;
+    }
+    
+    public static EnvironmentManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
     }
 
     private void Start()
@@ -160,7 +169,7 @@ public class EnvironmentManager : MonoBehaviour
         var offset =  1f - 2f * centerEnvironment.transform.rotation.y;
         var centerEnvironmentPosition = centerEnvironment.transform.position + centerOffset * offset;
         if (Mathf.Abs(player.position.x - centerEnvironmentPosition.x) < environmentWidth) return;
-        if (Mathf.Abs(player.position.y - centerEnvironmentPosition.y) > environmentWidth / 2f) return;
+        if (Mathf.Abs(player.position.z - centerEnvironmentPosition.z) > environmentWidth / 2f) return;
 
         Debug.Log($"{Mathf.Abs(player.position.y - centerEnvironmentPosition.y)}, {environmentWidth / 2f}");
         
@@ -262,5 +271,10 @@ public class EnvironmentManager : MonoBehaviour
         var offset = 1f - 2f * GetCenterEnvironment().transform.rotation.y;
         Gizmos.DrawWireCube(GetCenterEnvironment().transform.position + centerOffset * offset,
             new Vector3(environmentWidth * 2f, environmentWidth, environmentWidth));
+    }
+
+    public Vector3 GetPlayerPosition()
+    {
+        return player.position;
     }
 }

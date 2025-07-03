@@ -20,7 +20,14 @@ public class FirstPersonMovementController : MonoBehaviour
         if (inputProvider == null) return;
 
         Vector2 input = inputProvider.GetMoveInput();
-        if(IsZeroInput(input)) return;
+        if (IsZeroInput(input))
+        {
+            var velo = rb.velocity;
+            velo.x = 0f;
+            velo.z = 0f;
+            rb.velocity = velo;
+            return;
+        }
 
         Vector3 moveInput = (transform.forward * input.y + transform.right * input.x);
         moveInput.y = 0f;
