@@ -1362,12 +1362,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 834828142541241067, guid: 6b4e299bb8a234440bcd16c11cb2e390, type: 3}
       propertyPath: m_Constraints
-      value: 112
+      value: 116
+      objectReference: {fileID: 0}
+    - target: {fileID: 834828142541241067, guid: 6b4e299bb8a234440bcd16c11cb2e390, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4051464058045755895, guid: 6b4e299bb8a234440bcd16c11cb2e390, type: 3}
       propertyPath: inputProvider
       value: 
       objectReference: {fileID: 976303880}
+    - target: {fileID: 4449258701497801495, guid: 6b4e299bb8a234440bcd16c11cb2e390, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6228581519404759741, guid: 6b4e299bb8a234440bcd16c11cb2e390, type: 3}
       propertyPath: m_Name
       value: Player

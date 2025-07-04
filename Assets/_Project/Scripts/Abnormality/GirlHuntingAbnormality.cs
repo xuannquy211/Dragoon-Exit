@@ -4,6 +4,7 @@ using UnityEngine.AI;
 
 public class GirlHuntingAbnormality : Abnormality
 {
+    [SerializeField] private GirlController girlController;
     [SerializeField] private NavMeshAgent agent;
     
     private bool _isActive;
@@ -12,6 +13,7 @@ public class GirlHuntingAbnormality : Abnormality
     public override void Active()
     {
         _isActive = true;
+        girlController.enabled = false;
         agent.enabled = true;
     }
 
@@ -20,6 +22,7 @@ public class GirlHuntingAbnormality : Abnormality
         if (_isActive)
         {
             agent.enabled = false;
+            girlController.enabled = true;
             _isActive = false;
         }
     }
