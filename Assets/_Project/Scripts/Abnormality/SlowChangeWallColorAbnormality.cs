@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SlowChangeWallColorAbnormality : Abnormality
 {
-    [SerializeField] private Material mainMaterial;
+    [SerializeField] private MeshRenderer[] walls;
     [SerializeField] private Color colorTarget;
     
     private bool isActive;
@@ -11,14 +11,20 @@ public class SlowChangeWallColorAbnormality : Abnormality
     public override void Active()
     {
         isActive = true;
-        mainMaterial.DOColor(colorTarget, 5f);
+        foreach (var wall in walls)
+        {
+            wall.materials[0].DOColor(colorTarget, 5f);
+        }
     }
 
     public override void Deactive()
     {
         if (isActive)
         {
-            mainMaterial.DOColor(Color.white, 5f);
+            foreach (var wall in walls)
+            {
+                wall.materials[0].DOColor(Color.white, 5f);
+            }
             isActive = false;
         }
     }
