@@ -51,7 +51,7 @@ Material:
     - _DstBlendAlpha: 0
     - _GlossMapScale: 0.2
     - _Mode: 1
-    - _Smoothness: 0.758
+    - _Smoothness: 0.2
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1

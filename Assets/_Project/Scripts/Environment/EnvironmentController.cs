@@ -12,6 +12,7 @@ public class EnvironmentController : MonoBehaviour
     [SerializeField] private GameObject girlTrigger;
     [SerializeField] private Transform girl, girlStartPoint;
     [SerializeField] private GirlController girlController;
+    [SerializeField] private GameObject[] numbers;
 
     [Space(10)] [Header("========== Abnormalities ==========")] [SerializeField]
     private Abnormality[] abnormalities;
@@ -94,6 +95,14 @@ public class EnvironmentController : MonoBehaviour
         girl.position = girlStartPoint.position;
         girl.forward = Vector3.forward;
         girlController.SetAnim("Walking");
+    }
+
+    public void ActiveNumber(int index)
+    {
+        for (var i = 0; i < numbers.Length; i++)
+        {
+            numbers[i].SetActive(i == index);
+        }
     }
 
     [Button]

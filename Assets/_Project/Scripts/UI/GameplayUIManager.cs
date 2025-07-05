@@ -1,10 +1,9 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameplayUIManager : MonoBehaviour
 {
-    [SerializeField] private Button interactButton;
+    [SerializeField] private Button interactButton, pauseButton;
     [SerializeField] private RectTransform crosshair;
 
     private float _crosshairSize = 1f;

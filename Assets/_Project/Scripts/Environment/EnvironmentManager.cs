@@ -12,7 +12,7 @@ public class EnvironmentManager : MonoBehaviour
     [SerializeField] private Vector3 centerOffset;
     [SerializeField] private int _totalPreviewMap = 2;
 
-    private readonly List<EnvironmentController> _environments = new List<EnvironmentController>();
+    private List<EnvironmentController> _environments = new List<EnvironmentController>();
     private bool _isHavingAbnormality = false;
     private Transform _destination;
 
@@ -170,8 +170,6 @@ public class EnvironmentManager : MonoBehaviour
         var centerEnvironmentPosition = centerEnvironment.transform.position + centerOffset * offset;
         if (Mathf.Abs(player.position.x - centerEnvironmentPosition.x) < environmentWidth) return;
         if (Mathf.Abs(player.position.z - centerEnvironmentPosition.z) > environmentWidth / 2f) return;
-
-        Debug.Log($"{Mathf.Abs(player.position.y - centerEnvironmentPosition.y)}, {environmentWidth / 2f}");
         
         var centerEnvironmentForward = centerEnvironment.transform.right;
         var direction = Vector3.Normalize(player.position - centerEnvironmentPosition);
@@ -197,7 +195,6 @@ public class EnvironmentManager : MonoBehaviour
             _totalPreviewMap--;
             if (_totalPreviewMap > 0)
             {
-                Debug.Log("TotalPreviewMap: " + _totalPreviewMap);
                 return;
             }
             UserData.IsFirstTime = false;
@@ -242,8 +239,21 @@ public class EnvironmentManager : MonoBehaviour
     {
         var centerEnvironment = GetCenterEnvironment();
         _isHavingAbnormality = Random.value < 0.5f;
-        if (_isHavingAbnormality) centerEnvironment.ActiveAbnormality();
-        else centerEnvironment.ClearAbnormalities();
+        if (_isHavingAbnormality)
+        {
+            centerEnvironment.ActiveAbnormality();
+            centerEnvironment.ActiveNumber(CurrentWaveIndex);
+            _environments[0].ActiveNumber(CurrentWaveIndex + 1);
+            _environments[2].ActiveNumber(0);
+            
+        }
+        else
+        {
+            centerEnvironment.ClearAbnormalities();
+            centerEnvironment.ActiveNumber(CurrentWaveIndex);
+            _environments[2].ActiveNumber(CurrentWaveIndex + 1);
+            _environments[0].ActiveNumber(0);
+        }
 
         _environments[0].ClearAbnormalities();
         _environments[2].ClearAbnormalities();
