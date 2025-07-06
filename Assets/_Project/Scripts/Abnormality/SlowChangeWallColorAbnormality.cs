@@ -5,12 +5,14 @@ public class SlowChangeWallColorAbnormality : Abnormality
 {
     [SerializeField] private MeshRenderer[] walls;
     [SerializeField] private Color colorTarget;
+    [SerializeField] private GPUInstancing gpuInstancing;
     
     private bool isActive;
     
     public override void Active()
     {
         isActive = true;
+        gpuInstancing.Active(false);
         foreach (var wall in walls)
         {
             wall.materials[0].DOColor(colorTarget, 5f);
@@ -21,6 +23,7 @@ public class SlowChangeWallColorAbnormality : Abnormality
     {
         if (isActive)
         {
+            gpuInstancing.Active(true);
             foreach (var wall in walls)
             {
                 wall.materials[0].DOColor(Color.white, 5f);

@@ -20,6 +20,7 @@ public class GPUInstancing : MonoBehaviour
 
     private readonly int _maxBatchSize = 1023;
     private Matrix4x4[] _matrixBuffer;
+    private bool _isDisableGPUInstancing;
 
     class SubMeshGroup
     {
@@ -63,6 +64,7 @@ public class GPUInstancing : MonoBehaviour
 
     void Update()
     {
+        if (_isDisableGPUInstancing) return;
         Vector3 camPos = targetCamera.transform.position;
         lod0Groups.ForEach(g => g.matrices.Clear());
         lod1Groups.ForEach(g => g.matrices.Clear());
@@ -116,5 +118,11 @@ public class GPUInstancing : MonoBehaviour
                 Graphics.DrawMeshInstanced(group.mesh, group.subMeshIndex, group.material, _matrixBuffer, count);
             }
         }
+    }
+    
+    public void Active(bool isActive)
+    {
+        _isDisableGPUInstancing = !isActive;
+        foreach (var renderer in houses) renderer.enabled = !isActive;
     }
 }
