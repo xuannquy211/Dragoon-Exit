@@ -5,14 +5,16 @@ using Random = UnityEngine.Random;
 
 public class EnvironmentManager : MonoBehaviour
 {
-    [SerializeField] private EnvironmentController environmentPrefab;
+    //[SerializeField] private EnvironmentController environmentPrefab;
     [SerializeField] private Transform player;
     [SerializeField] private Transform destinationPrefab;
     [SerializeField] private float environmentWidth = 80f;
     [SerializeField] private Vector3 centerOffset;
     [SerializeField] private int _totalPreviewMap = 2;
-
-    private List<EnvironmentController> _environments = new List<EnvironmentController>();
+    [SerializeField] private List<EnvironmentController> _environments;
+    [SerializeField] private Transform light;
+    [SerializeField] private Transform playerPoint;
+    
     private bool _isHavingAbnormality = false;
     private Transform _destination;
 
@@ -48,29 +50,29 @@ public class EnvironmentManager : MonoBehaviour
     private void FirstInitEnvironment()
     {
         var abnormalityUsed = UserData.GetAbnormalitiesUsed();
-        _environments.Clear();
 
-        var centerEnvironment = Instantiate(environmentPrefab, transform);
+        var centerEnvironment = _environments[1]; //Instantiate(environmentPrefab, transform);
         centerEnvironment.InitAbnormality(abnormalityUsed);
-        _environments.Add(centerEnvironment);
+        //_environments.Add(centerEnvironment);
         centerEnvironment.gameObject.name = "CenterEnvironment";
 
-        var backRotation = new Quaternion(0f, 1f, 0f, 0f);
-        var backPosition = centerEnvironment.BackEnvironmentTarget.position;
+        /*var backRotation = new Quaternion(0f, 1f, 0f, 0f);
+        var backPosition = centerEnvironment.BackEnvironmentTarget.position;*/
 
-        var backEnvironment = Instantiate(environmentPrefab, backPosition, backRotation, transform);
+        var backEnvironment = _environments[0]; //Instantiate(environmentPrefab, backPosition, backRotation, transform);
         
         backEnvironment.InitAbnormality(abnormalityUsed);
-        _environments.Insert(0, backEnvironment);
+        //_environments.Insert(0, backEnvironment);
         backEnvironment.gameObject.name = "BackEnvironment";
 
-        var nextPosition = centerEnvironment.NextEnvironmentTarget.position;
-        var nextEnvironment = Instantiate(environmentPrefab, nextPosition, Quaternion.identity, transform);
+        //var nextPosition = centerEnvironment.NextEnvironmentTarget.position;
+        var nextEnvironment = _environments[2]; //Instantiate(environmentPrefab, nextPosition, Quaternion.identity, transform);
         nextEnvironment.InitAbnormality(abnormalityUsed);
-        _environments.Add(nextEnvironment);
+        //_environments.Add(nextEnvironment);
         nextEnvironment.gameObject.name = "NextEnvironment";
         
         player.SetParent(centerEnvironment.transform);
+        light.SetParent(centerEnvironment.transform);
     }
 
 
@@ -83,6 +85,7 @@ public class EnvironmentManager : MonoBehaviour
 
         var currentCenter = _environments[0];
         player.SetParent(currentCenter.transform);
+        light.SetParent(currentCenter.transform);
         currentCenter.transform.position = Vector3.zero;
         currentCenter.transform.rotation = Quaternion.identity;
 
@@ -112,6 +115,7 @@ public class EnvironmentManager : MonoBehaviour
 
         var currentCenter = _environments[0];
         player.SetParent(currentCenter.transform);
+        light.SetParent(currentCenter.transform);
         currentCenter.transform.position = Vector3.zero;
         currentCenter.transform.rotation = Quaternion.identity;
         
@@ -140,6 +144,10 @@ public class EnvironmentManager : MonoBehaviour
             _environments[i].gameObject.SetActive(true);
             _environments[i].ReInit();
         }
+
+        _environments[0].SetQuadY(-0.001f);
+        _environments[1].SetQuadY(0);
+        _environments[2].SetQuadY(0.001f);
     }
 
     private void UpdateHolderToCenter()
@@ -198,6 +206,7 @@ public class EnvironmentManager : MonoBehaviour
                 return;
             }
             UserData.IsFirstTime = false;
+            RandomAbnormality();
         }
         else RandomAbnormality();
 
@@ -283,6 +292,28 @@ public class EnvironmentManager : MonoBehaviour
             new Vector3(environmentWidth * 2f, environmentWidth, environmentWidth));
     }
 
+    public void Restart()
+    {
+        if(!UserData.IsFirstTime) CurrentWaveIndex = 0;
+
+        GameplayUIManager.Instance.CloseEye(ResetEnvironment);
+    }
+
+    private void ResetEnvironment()
+    {
+        player.position = playerPoint.position;
+        player.rotation = playerPoint.rotation;
+
+        foreach (var env in _environments)
+        {
+            env.ClearAbnormalities();
+            env.ReInit();
+        }
+
+        if (UserData.IsFirstTime) return;
+        RandomAbnormality();
+    }
+    
     public Vector3 GetPlayerPosition()
     {
         return player.position;

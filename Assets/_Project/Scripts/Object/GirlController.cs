@@ -57,6 +57,12 @@ public class GirlController : MonoBehaviour
         _currentProgress = 1f;
     }
 
+    public void StopWalking()
+    {
+        _isWalking = false;
+        _currentProgress = 0f;
+    }
+    
     private void UpdatePosition()
     {
         var progress = wayCurve.Evaluate(_currentProgress);

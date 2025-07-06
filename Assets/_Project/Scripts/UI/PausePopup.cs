@@ -14,13 +14,20 @@ public class PausePopup : MonoBehaviour
     private void OnEnable()
     {
         ClearSequence();
+
+        ((RectTransform)resumeButton.transform).anchoredPosition = new Vector3(-_anchorXTarget, 75.95001f, 0f);
+        ((RectTransform)settingsButton.transform).anchoredPosition = new Vector3(-_anchorXTarget, 0f, 0f);
+        ((RectTransform)restartButton.transform).anchoredPosition = new Vector3(-_anchorXTarget, -75.95001f, 0f);
+        
+        _sequence = DOTween.Sequence();
+        _sequence.SetUpdate(true);
         _sequence.Append(panel.DOFade(1f, 0.5f).From(0f));
         _sequence.Append((resumeButton.transform as RectTransform).DOAnchorPosX(_anchorXTarget, 0.25f)
-            .From(new Vector3(-_anchorXTarget, 151.9f, 0f)).SetEase(Ease.OutBack));
+            .From(new Vector3(-_anchorXTarget, 75.95001f, 0f)).SetEase(Ease.OutBack));
         _sequence.Join((settingsButton.transform as RectTransform).DOAnchorPosX(_anchorXTarget, 0.35f)
             .From(new Vector3(-_anchorXTarget, 0f, 0f)).SetEase(Ease.OutBack));
         _sequence.Join((restartButton.transform as RectTransform).DOAnchorPosX(_anchorXTarget, 0.45f)
-            .From(new Vector3(-_anchorXTarget, -151.9f, 0f)).SetEase(Ease.OutBack));
+            .From(new Vector3(-_anchorXTarget, -75.95001f, 0f)).SetEase(Ease.OutBack));
     }
 
     private void Start()
@@ -42,7 +49,11 @@ public class PausePopup : MonoBehaviour
 
     private void OnClickRestart()
     {
-        Hide(() => Time.timeScale = 1f);
+        Hide(() =>
+        {
+            Time.timeScale = 1f;
+            EnvironmentManager.Instance.Restart();
+        });
     }
 
     private void ClearSequence()
@@ -54,6 +65,8 @@ public class PausePopup : MonoBehaviour
     {
         ClearSequence();
 
+        _sequence = DOTween.Sequence();
+        _sequence.SetUpdate(true);
         _sequence.Append((resumeButton.transform as RectTransform).DOAnchorPosX(-_anchorXTarget, 0.45f)
             .SetEase(Ease.InBack));
         _sequence.Join((settingsButton.transform as RectTransform).DOAnchorPosX(-_anchorXTarget, 0.35f)
