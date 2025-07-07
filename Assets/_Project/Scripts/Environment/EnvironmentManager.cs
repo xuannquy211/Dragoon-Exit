@@ -12,7 +12,7 @@ public class EnvironmentManager : MonoBehaviour
     [SerializeField] private Vector3 centerOffset;
     [SerializeField] private int _totalPreviewMap = 2;
     [SerializeField] private List<EnvironmentController> _environments;
-    [SerializeField] private Transform light;
+    [SerializeField] private Transform light, ground;
     [SerializeField] private Transform playerPoint;
     
     private bool _isHavingAbnormality = false;
@@ -73,6 +73,7 @@ public class EnvironmentManager : MonoBehaviour
         
         player.SetParent(centerEnvironment.transform);
         light.SetParent(centerEnvironment.transform);
+        ground.SetParent(centerEnvironment.transform);
     }
 
 
@@ -86,6 +87,7 @@ public class EnvironmentManager : MonoBehaviour
         var currentCenter = _environments[0];
         player.SetParent(currentCenter.transform);
         light.SetParent(currentCenter.transform);
+        ground.SetParent(currentCenter.transform);
         currentCenter.transform.position = Vector3.zero;
         currentCenter.transform.rotation = Quaternion.identity;
 
@@ -116,6 +118,7 @@ public class EnvironmentManager : MonoBehaviour
         var currentCenter = _environments[0];
         player.SetParent(currentCenter.transform);
         light.SetParent(currentCenter.transform);
+        ground.SetParent(currentCenter.transform);
         currentCenter.transform.position = Vector3.zero;
         currentCenter.transform.rotation = Quaternion.identity;
         
@@ -144,10 +147,6 @@ public class EnvironmentManager : MonoBehaviour
             _environments[i].gameObject.SetActive(true);
             _environments[i].ReInit();
         }
-
-        _environments[0].SetQuadY(-0.001f);
-        _environments[1].SetQuadY(0);
-        _environments[2].SetQuadY(0.001f);
     }
 
     private void UpdateHolderToCenter()
@@ -317,5 +316,10 @@ public class EnvironmentManager : MonoBehaviour
     public Vector3 GetPlayerPosition()
     {
         return player.position;
+    }
+
+    public Transform GetPlayer()
+    {
+        return player;
     }
 }

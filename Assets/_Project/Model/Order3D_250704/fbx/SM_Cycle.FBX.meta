@@ -3,7 +3,32 @@ guid: db0dc8ccfa64e6a47a2adeb13fc707fe
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fbx Default Material
+    second: {fileID: 2100000, guid: 3f077f695e2765246ad1a1cfe202b41c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Fruit_01_B
+    second: {fileID: 2100000, guid: 3649d518f5de1794085d4733c94ee0aa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_BambooBasket
+    second: {fileID: 2100000, guid: 906de4e63d0a6b5458757a668551bbfb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_BinBag
+    second: {fileID: 2100000, guid: e651603d3ebdaf248afc74f45520b452, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_cycle_B
+    second: {fileID: 2100000, guid: 8a0d3be4fd4e8be469324528154f84c7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -13,7 +13,6 @@ public class EnvironmentController : MonoBehaviour
     [SerializeField] private Transform girl, girlStartPoint;
     [SerializeField] private GirlController girlController;
     [SerializeField] private GameObject[] numbers;
-    [SerializeField] private Transform ground;
 
     [Space(10)] [Header("========== Abnormalities ==========")] [SerializeField]
     private Abnormality[] abnormalities;
@@ -111,13 +110,6 @@ public class EnvironmentController : MonoBehaviour
     public void ActiveAbnormality(int index)
     {
         abnormalities[index].Active();
-    }
-
-    public void SetQuadY(float y)
-    {
-        var pos = ground.localPosition;
-        pos.y = y;
-        ground.localPosition = pos;
     }
     
     private void OnDestroy()

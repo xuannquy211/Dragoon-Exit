@@ -21,7 +21,7 @@ public class GirlController : MonoBehaviour
         set
         {
             speed = value;
-            var scale = value / 0.02f;
+            var scale = value / 0.05f;
             animator.speed = scale;
         }
     }

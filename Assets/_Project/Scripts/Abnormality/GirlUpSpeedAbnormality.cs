@@ -6,11 +6,11 @@ public class GirlUpSpeedAbnormality : Abnormality
     
     public override void Active()
     {
-        _girlController.Speed = 0.04f;
+        _girlController.Speed = 0.1f;
     }
 
     public override void Deactive()
     {
-        _girlController.Speed = 0.02f;
+        _girlController.Speed = 0.05f;
     }
 }

@@ -20,7 +20,7 @@ namespace _Project.Scripts.Object
 
         public override void Activate()
         {
-            rigidbody.AddForce(Vector3.up * 2f, ForceMode.Impulse);
+            rigidbody.AddForce(Vector3.up * 7f, ForceMode.Impulse);
         }
     }
 }
