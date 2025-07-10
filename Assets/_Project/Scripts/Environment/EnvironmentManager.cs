@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro.Examples;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -17,6 +18,11 @@ public class EnvironmentManager : MonoBehaviour
     
     private bool _isHavingAbnormality = false;
     private Transform _destination;
+    private Vector3 initialCameraLocalPosition;
+    private Quaternion initialCameraLocalRotation;
+    private FirstPersonCameraController cameraController;
+    private FirstPersonMovementController movementController;
+    private CameraBobbing cameraBobbing;
 
     public static List<int> AbnormalitiesSeen = new List<int>();
 
@@ -45,6 +51,12 @@ public class EnvironmentManager : MonoBehaviour
         }
 
         UserData.SessionCount++;
+
+        cameraController = FindObjectOfType<FirstPersonCameraController>();
+        movementController = FindObjectOfType<FirstPersonMovementController>();
+        initialCameraLocalPosition = cameraController.transform.localPosition;
+        initialCameraLocalRotation = cameraController.transform.localRotation;
+
     }
 
     private void FirstInitEnvironment()
@@ -308,6 +320,20 @@ public class EnvironmentManager : MonoBehaviour
             env.ClearAbnormalities();
             env.ReInit();
         }
+
+        var movementController = player.GetComponent<FirstPersonMovementController>();
+        var cameraController = FindObjectOfType<FirstPersonCameraController>();
+        var cameraBobbing = FindObjectOfType<CameraBobbing>();
+
+        cameraController.enabled = true;
+        movementController.enabled = true;
+        cameraBobbing.enabled = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        player.position = playerPoint.position;
+        player.rotation = playerPoint.rotation;
+        cameraController.transform.localPosition = initialCameraLocalPosition;
+        cameraController.transform.localRotation = initialCameraLocalRotation;
 
         if (UserData.IsFirstTime) return;
         RandomAbnormality();

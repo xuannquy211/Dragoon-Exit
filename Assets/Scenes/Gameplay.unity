@@ -2852,7 +2852,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2407733507717765107, guid: 64ab77c252b62b14d9e95dfac3543552, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 736795334}
   m_SourcePrefab: {fileID: 100100000, guid: 64ab77c252b62b14d9e95dfac3543552, type: 3}
 --- !u!4 &674728017 stripped
 Transform:
@@ -2986,6 +2989,24 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 5783800078848123243, guid: 64ab77c252b62b14d9e95dfac3543552, type: 3}
   m_PrefabInstance: {fileID: 674728016}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &736795332 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2407733507717765107, guid: 64ab77c252b62b14d9e95dfac3543552, type: 3}
+  m_PrefabInstance: {fileID: 674728016}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &736795334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736795332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f32d834c03363c4c9ac25e0f82c2d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheelChairTrigger: {fileID: 0}
 --- !u!23 &750464992 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 823419977187988177, guid: 64ab77c252b62b14d9e95dfac3543552, type: 3}
@@ -4274,11 +4295,9 @@ MonoBehaviour:
   playerRigidbody: {fileID: 1684499129}
   idleAmplitude: 0.02
   idleFrequency: 1.5
-  moveAmplitudeY: 0.06
-  moveAmplitudeX: 0.03
+  moveAmplitude: 0.05
   moveFrequency: 10
-  maxSpeed: 6
-  smoothLerp: 1
+  maxSpeedForBobbing: 6
 --- !u!23 &1277374090 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2057263985058188622, guid: 64ab77c252b62b14d9e95dfac3543552, type: 3}
@@ -6132,7 +6151,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2407733507717765107, guid: 64ab77c252b62b14d9e95dfac3543552, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1946970592}
   m_SourcePrefab: {fileID: 100100000, guid: 64ab77c252b62b14d9e95dfac3543552, type: 3}
 --- !u!4 &1474815934 stripped
 Transform:
@@ -6960,6 +6982,24 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2326398656170427027, guid: 64ab77c252b62b14d9e95dfac3543552, type: 3}
   m_PrefabInstance: {fileID: 674728016}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1946970590 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2407733507717765107, guid: 64ab77c252b62b14d9e95dfac3543552, type: 3}
+  m_PrefabInstance: {fileID: 1474815933}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1946970592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946970590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f32d834c03363c4c9ac25e0f82c2d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheelChairTrigger: {fileID: 0}
 --- !u!23 &1953656091 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 1027028190059791877, guid: 64ab77c252b62b14d9e95dfac3543552, type: 3}
@@ -7251,6 +7291,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2057313995}
   m_CullTransparentMesh: 1
+--- !u!1 &2067738334 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2407733507717765107, guid: 64ab77c252b62b14d9e95dfac3543552, type: 3}
+  m_PrefabInstance: {fileID: 4620967023890558911}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2067738336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067738334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f32d834c03363c4c9ac25e0f82c2d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheelChairTrigger: {fileID: 0}
 --- !u!23 &2075108952 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 340708426663469924, guid: 64ab77c252b62b14d9e95dfac3543552, type: 3}
@@ -7385,6 +7443,10 @@ PrefabInstance:
       objectReference: {fileID: 976303880}
     - target: {fileID: 6228581519404759741, guid: 6b4e299bb8a234440bcd16c11cb2e390, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6228581519404759741, guid: 6b4e299bb8a234440bcd16c11cb2e390, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6275810922772752504, guid: 6b4e299bb8a234440bcd16c11cb2e390, type: 3}
@@ -9465,7 +9527,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2407733507717765107, guid: 64ab77c252b62b14d9e95dfac3543552, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2067738336}
   m_SourcePrefab: {fileID: 100100000, guid: 64ab77c252b62b14d9e95dfac3543552, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
