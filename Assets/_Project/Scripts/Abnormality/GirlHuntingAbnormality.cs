@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,6 +16,7 @@ public class GirlHuntingAbnormality : Abnormality
         _isActive = true;
         girlController.enabled = false;
         agent.enabled = true;
+        girlController.SetAnim("Walking");
     }
 
     public override void Deactive()
@@ -24,11 +26,24 @@ public class GirlHuntingAbnormality : Abnormality
             agent.enabled = false;
             girlController.enabled = true;
             _isActive = false;
+            girlController.SetAnim("Idle");
         }
     }
 
     private void Update()
     {
-        if (_isActive) agent.SetDestination(EnvironmentManager.Instance.GetPlayerPosition());
+        if (_isActive)
+        {
+            agent.SetDestination(EnvironmentManager.Instance.GetPlayerPosition());
+            if (Vector3.Distance(transform.position, EnvironmentManager.Instance.GetPlayerPosition()) > 1f) return;
+            agent.transform.LookAt(EnvironmentManager.Instance.GetPlayerPosition());
+            agent.enabled = false;
+            var playerManager = EnvironmentManager.Instance.PlayerManager;
+            playerManager.MovementController.enabled = false;
+            playerManager.ViewController.enabled = false;
+            playerManager.transform.DOLookAt(transform.position,
+                0.5f).OnComplete(EnvironmentManager.Instance.Restart);
+            _isActive = false;
+        }
     }
 }

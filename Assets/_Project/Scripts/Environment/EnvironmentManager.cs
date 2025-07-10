@@ -7,6 +7,7 @@ public class EnvironmentManager : MonoBehaviour
 {
     //[SerializeField] private EnvironmentController environmentPrefab;
     [SerializeField] private Transform player;
+    [SerializeField] private PlayerManager playerManager;
     [SerializeField] private Transform destinationPrefab;
     [SerializeField] private float environmentWidth = 80f;
     [SerializeField] private Vector3 centerOffset;
@@ -14,9 +15,10 @@ public class EnvironmentManager : MonoBehaviour
     [SerializeField] private List<EnvironmentController> _environments;
     [SerializeField] private Transform light, ground;
     [SerializeField] private Transform playerPoint;
-    
+
     private bool _isHavingAbnormality = false;
     private Transform _destination;
+    public PlayerManager PlayerManager => playerManager;
 
     public static List<int> AbnormalitiesSeen = new List<int>();
 
@@ -25,7 +27,7 @@ public class EnvironmentManager : MonoBehaviour
         get => UserData.CurrentWaveIndex;
         set => UserData.CurrentWaveIndex = value;
     }
-    
+
     public static EnvironmentManager Instance { get; private set; }
 
     private void Awake()
@@ -60,17 +62,18 @@ public class EnvironmentManager : MonoBehaviour
         var backPosition = centerEnvironment.BackEnvironmentTarget.position;*/
 
         var backEnvironment = _environments[0]; //Instantiate(environmentPrefab, backPosition, backRotation, transform);
-        
+
         backEnvironment.InitAbnormality(abnormalityUsed);
         //_environments.Insert(0, backEnvironment);
         backEnvironment.gameObject.name = "BackEnvironment";
 
         //var nextPosition = centerEnvironment.NextEnvironmentTarget.position;
-        var nextEnvironment = _environments[2]; //Instantiate(environmentPrefab, nextPosition, Quaternion.identity, transform);
+        var nextEnvironment =
+            _environments[2]; //Instantiate(environmentPrefab, nextPosition, Quaternion.identity, transform);
         nextEnvironment.InitAbnormality(abnormalityUsed);
         //_environments.Add(nextEnvironment);
         nextEnvironment.gameObject.name = "NextEnvironment";
-        
+
         player.SetParent(centerEnvironment.transform);
         light.SetParent(centerEnvironment.transform);
         ground.SetParent(centerEnvironment.transform);
@@ -121,7 +124,7 @@ public class EnvironmentManager : MonoBehaviour
         ground.SetParent(currentCenter.transform);
         currentCenter.transform.position = Vector3.zero;
         currentCenter.transform.rotation = Quaternion.identity;
-        
+
         var nextEuler = currentCenter.transform.eulerAngles;
         var backEuler = Mathf.Abs(currentCenter.transform.rotation.y - 1);
         oldNext.transform.eulerAngles = nextEuler;
@@ -173,11 +176,11 @@ public class EnvironmentManager : MonoBehaviour
     private void FixedUpdate()
     {
         var centerEnvironment = GetCenterEnvironment();
-        var offset =  1f - 2f * centerEnvironment.transform.rotation.y;
+        var offset = 1f - 2f * centerEnvironment.transform.rotation.y;
         var centerEnvironmentPosition = centerEnvironment.transform.position + centerOffset * offset;
         if (Mathf.Abs(player.position.x - centerEnvironmentPosition.x) < environmentWidth) return;
         if (Mathf.Abs(player.position.z - centerEnvironmentPosition.z) > environmentWidth / 2f) return;
-        
+
         var centerEnvironmentForward = centerEnvironment.transform.right;
         var direction = Vector3.Normalize(player.position - centerEnvironmentPosition);
         var dot = Vector3.Dot(centerEnvironmentForward, direction);
@@ -204,6 +207,7 @@ public class EnvironmentManager : MonoBehaviour
             {
                 return;
             }
+
             UserData.IsFirstTime = false;
             RandomAbnormality();
         }
@@ -253,7 +257,6 @@ public class EnvironmentManager : MonoBehaviour
             centerEnvironment.ActiveNumber(CurrentWaveIndex);
             _environments[0].ActiveNumber(CurrentWaveIndex + 1);
             _environments[2].ActiveNumber(0);
-            
         }
         else
         {
@@ -269,7 +272,7 @@ public class EnvironmentManager : MonoBehaviour
 
     private void OnTrueWay()
     {
-        if(UserData.IsFirstTime) return;
+        if (UserData.IsFirstTime) return;
         if (CurrentWaveIndex > Configs.TARGET_WAVE) return;
         CurrentWaveIndex++;
         Debug.Log(CurrentWaveIndex);
@@ -277,7 +280,7 @@ public class EnvironmentManager : MonoBehaviour
 
     private void OnWrongWay()
     {
-        if(UserData.IsFirstTime) return;
+        if (UserData.IsFirstTime) return;
         CurrentWaveIndex = 0;
         Debug.Log(CurrentWaveIndex);
     }
@@ -293,9 +296,11 @@ public class EnvironmentManager : MonoBehaviour
 
     public void Restart()
     {
-        if(!UserData.IsFirstTime) CurrentWaveIndex = 0;
+        if (!UserData.IsFirstTime) CurrentWaveIndex = 0;
 
         GameplayUIManager.Instance.CloseEye(ResetEnvironment);
+        playerManager.ViewController.enabled = true;
+        playerManager.MovementController.enabled = true;
     }
 
     private void ResetEnvironment()
@@ -312,7 +317,7 @@ public class EnvironmentManager : MonoBehaviour
         if (UserData.IsFirstTime) return;
         RandomAbnormality();
     }
-    
+
     public Vector3 GetPlayerPosition()
     {
         return player.position;

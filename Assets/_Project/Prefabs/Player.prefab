@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8685744196562523693}
   - component: {fileID: 4051464058045755895}
-  - component: {fileID: 6275810922772752504}
   m_Layer: 0
   m_Name: Camera Holder
   m_TagString: Untagged
@@ -51,24 +50,6 @@ MonoBehaviour:
   minPitch: -60
   maxPitch: 60
   inputProvider: {fileID: 0}
---- !u!114 &6275810922772752504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2823538903949468250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a53f4f012bd71a642afac16299494923, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerRigidbody: {fileID: 834828142541241067}
-  idleAmplitude: 0.05
-  idleFrequency: 0.5
-  moveAmplitude: 0.3
-  moveFrequency: 3
-  maxSpeedForBobbing: 20
 --- !u!1 &6228581519404759741
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,6 +64,9 @@ GameObject:
   - component: {fileID: 20646987281089488}
   - component: {fileID: 8258806805887348114}
   - component: {fileID: -2364371182313761567}
+  - component: {fileID: 3822187096160133350}
+  - component: {fileID: 7296737744145395639}
+  - component: {fileID: 7388375552775665548}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -200,6 +184,134 @@ MonoBehaviour:
   interactiveLayers:
     serializedVersion: 2
     m_Bits: 512
+--- !u!114 &3822187096160133350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6228581519404759741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73e94684dbfa16f40a573a4046e4b568, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 7296737744145395639}
+  rigidbody: {fileID: 834828142541241067}
+  clips:
+  - {fileID: 8300000, guid: 7b51ab5fc1260e14684e2d2daad40111, type: 3}
+  - {fileID: 8300000, guid: e4648a7aa7f115843a0915b811c469b3, type: 3}
+  speed: 0.25
+--- !u!82 &7296737744145395639
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6228581519404759741}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &7388375552775665548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6228581519404759741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f6195c1bc38024fa5115a618304ff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _viewController: {fileID: 4051464058045755895}
+  _movementController: {fileID: 8258806805887348114}
 --- !u!1 &7792981341334561927
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,6 +325,7 @@ GameObject:
   - component: {fileID: 4449258701497801495}
   - component: {fileID: 8178781896094858434}
   - component: {fileID: 7411877393032230871}
+  - component: {fileID: 9088992088777296706}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -245,7 +358,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -346,22 +459,40 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7792981341334561927}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd6d3819621d489598ef781243f642c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  variant: 1
-  quality: 3
-  antiGhosting: 0.724
+  variant: 2
+  quality: 4
+  antiGhosting: 0.75
   mipmapBiasOverride: 1
   autoTextureUpdate: 1
   mipMapUpdateFrequency: 2
-  m_displayWidth: 0
-  m_displayHeight: 0
-  m_prevGraphicsFormat: 0
-  m_cameraStacking: 0
-  m_topCamera: {fileID: 0}
+  m_displayWidth: 1920
+  m_displayHeight: 1080
+  m_prevGraphicsFormat: 48
+  m_cameraStacking: 1
+  m_topCamera: {fileID: 3822463440153019198}
+--- !u!114 &9088992088777296706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7792981341334561927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a53f4f012bd71a642afac16299494923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRigidbody: {fileID: 834828142541241067}
+  idleAmplitude: 0.02
+  idleFrequency: 1.5
+  moveAmplitude: 0.05
+  moveFrequency: 10
+  maxSpeedForBobbing: 6
 --- !u!1 &7885509245994275490
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,7 +21,7 @@ public class GirlController : MonoBehaviour
         set
         {
             speed = value;
-            var scale = value / 0.05f;
+            var scale = value / 0.02f;
             animator.speed = scale;
         }
     }
@@ -33,6 +33,7 @@ public class GirlController : MonoBehaviour
         _currentProgress = 0f;
         transform.position = startPoint.position;
         animator.Play("Walking");
+        animator.speed = speed / 0.02f;
         
         _direction = endPoint.position - startPoint.position;
         _per = Vector3.Cross(_direction, crossAxis).normalized;
