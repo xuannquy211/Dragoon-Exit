@@ -312,6 +312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _viewController: {fileID: 4051464058045755895}
   _movementController: {fileID: 8258806805887348114}
+  rigidbody: {fileID: 834828142541241067}
 --- !u!1 &7792981341334561927
 GameObject:
   m_ObjectHideFlags: 0

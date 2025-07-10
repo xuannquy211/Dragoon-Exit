@@ -805,14 +805,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   houses:
-  - {fileID: 0}
   - {fileID: 1839980616}
   - {fileID: 810060730}
   - {fileID: 950446388}
   - {fileID: 1483791159}
   - {fileID: 1155308750}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1613276077}
   - {fileID: 1292325323}
   - {fileID: 1783508994}
@@ -821,15 +818,12 @@ MonoBehaviour:
   - {fileID: 2093019107}
   - {fileID: 26366622}
   - {fileID: 364703249}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1279391976}
   - {fileID: 2003696971}
   - {fileID: 1240535042}
   - {fileID: 500934777}
   - {fileID: 931625605}
   - {fileID: 1056003982}
-  - {fileID: 0}
   - {fileID: 2016869745}
   - {fileID: 1615320127}
   - {fileID: 1477995887}
@@ -885,12 +879,9 @@ MonoBehaviour:
   - {fileID: 1741238673}
   - {fileID: 1303750499}
   - {fileID: 460897585}
-  - {fileID: 0}
   - {fileID: 1691854123}
   - {fileID: 1751213430}
   - {fileID: 1708312784}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 992785768}
   - {fileID: 905808819}
   - {fileID: 1842415809}
@@ -943,15 +934,12 @@ MonoBehaviour:
   houses:
   - {fileID: 1224886785}
   - {fileID: 538646447}
-  - {fileID: 0}
   - {fileID: 243184363}
   - {fileID: 1630007679}
   - {fileID: 183870267}
   - {fileID: 489732722}
   - {fileID: 1754762804}
   - {fileID: 1393096968}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1163168833}
   - {fileID: 1750753398}
   - {fileID: 1839137363}
@@ -960,8 +948,6 @@ MonoBehaviour:
   - {fileID: 1727258027}
   - {fileID: 1622092431}
   - {fileID: 882281814}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 796659468}
   - {fileID: 981631894}
   - {fileID: 457769164}
@@ -969,8 +955,6 @@ MonoBehaviour:
   - {fileID: 883471763}
   - {fileID: 305852322}
   - {fileID: 498542200}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 200138367}
   - {fileID: 1970402389}
   - {fileID: 1448415351}
@@ -980,9 +964,7 @@ MonoBehaviour:
   - {fileID: 568846641}
   - {fileID: 1605628364}
   - {fileID: 1592321938}
-  - {fileID: 0}
   - {fileID: 1624829754}
-  - {fileID: 0}
   - {fileID: 656517742}
   - {fileID: 1277374090}
   - {fileID: 724868640}
@@ -1031,12 +1013,6 @@ MonoBehaviour:
   - {fileID: 887313495}
   - {fileID: 1912160538}
   - {fileID: 182643602}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1045211797}
   - {fileID: 1556683480}
   - {fileID: 1670329326}

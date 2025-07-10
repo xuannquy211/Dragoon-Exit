@@ -299,15 +299,15 @@ public class EnvironmentManager : MonoBehaviour
         if (!UserData.IsFirstTime) CurrentWaveIndex = 0;
 
         GameplayUIManager.Instance.CloseEye(ResetEnvironment);
-        playerManager.ViewController.enabled = true;
-        playerManager.MovementController.enabled = true;
     }
 
     private void ResetEnvironment()
     {
         player.position = playerPoint.position;
         player.rotation = playerPoint.rotation;
-
+        playerManager.ViewController.enabled = true;
+        playerManager.MovementController.enabled = true;
+        
         foreach (var env in _environments)
         {
             env.ClearAbnormalities();

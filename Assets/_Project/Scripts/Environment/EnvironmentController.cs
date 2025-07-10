@@ -59,9 +59,10 @@ public class EnvironmentController : MonoBehaviour
         var totalAbnormalities = abnormalities.Length;
         for (var i = 0; i < totalAbnormalities; i++)
         {
-            if (i == index) abnormalities[i].Active();
-            else abnormalities[i].Deactive();
+            if (i == index) continue;
+            abnormalities[i].Deactive();
         }
+        abnormalities[index].Active();
         
         _abnormalitiesIndices.RemoveAt(randomIndex);
         UserData.AddAbnormalityUsed(index);

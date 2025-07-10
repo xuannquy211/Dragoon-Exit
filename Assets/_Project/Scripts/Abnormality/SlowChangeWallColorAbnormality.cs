@@ -12,10 +12,13 @@ public class SlowChangeWallColorAbnormality : Abnormality
     public override void Active()
     {
         isActive = true;
-        //gpuInstancing.Active(false);
+        
+        gpuInstancing.Active(false);
         foreach (var wall in walls)
         {
-            wall.materials[0].DOColor(colorTarget, 5f);
+            var mats = wall.materials;
+            mats[0].color = colorTarget;
+            wall.materials = mats;
         }
     }
 
@@ -23,10 +26,12 @@ public class SlowChangeWallColorAbnormality : Abnormality
     {
         if (isActive)
         {
-            //gpuInstancing.Active(true);
+            gpuInstancing.Active(true);
             foreach (var wall in walls)
             {
-                wall.materials[0].DOColor(Color.white, 5f);
+                var mats = wall.materials;
+                mats[0].color = Color.white;
+                wall.materials = mats;
             }
             isActive = false;
         }
