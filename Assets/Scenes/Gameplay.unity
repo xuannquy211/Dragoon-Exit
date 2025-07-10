@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 0.5
+  m_AmbientIntensity: 3
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 4e154bf235e41704bbd6bbc6fd6c63f6, type: 2}
@@ -524,7 +524,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5382699, g: 0.5625129, b: 0.6037736, a: 1}
   m_Intensity: 1.5
   m_Range: 10
   m_SpotAngle: 30
@@ -569,7 +569,7 @@ Light:
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
   m_ColorTemperature: 6429
-  m_UseColorTemperature: 1
+  m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
@@ -1030,9 +1030,9 @@ MonoBehaviour:
   - {fileID: 887313495}
   - {fileID: 1912160538}
   - {fileID: 182643602}
-  - {fileID: 897047177}
-  - {fileID: 1473276651}
-  - {fileID: 1717586453}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -3398,11 +3398,6 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 1895405743132161129, guid: 64ab77c252b62b14d9e95dfac3543552, type: 3}
   m_PrefabInstance: {fileID: 4620967023890558911}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &897047177 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 4382473310507521107, guid: 64ab77c252b62b14d9e95dfac3543552, type: 3}
-  m_PrefabInstance: {fileID: 4620967023890558911}
-  m_PrefabAsset: {fileID: 0}
 --- !u!23 &905808819 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 4826515109943943821, guid: 64ab77c252b62b14d9e95dfac3543552, type: 3}
@@ -4327,11 +4322,6 @@ MeshRenderer:
 --- !u!23 &1448415351 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 1152023179590490003, guid: 64ab77c252b62b14d9e95dfac3543552, type: 3}
-  m_PrefabInstance: {fileID: 1474815933}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &1473276651 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 4382473310507521107, guid: 64ab77c252b62b14d9e95dfac3543552, type: 3}
   m_PrefabInstance: {fileID: 1474815933}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1474815933
@@ -6497,11 +6487,6 @@ MeshRenderer:
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 1006603654323754611, guid: 64ab77c252b62b14d9e95dfac3543552, type: 3}
   m_PrefabInstance: {fileID: 4620967023890558911}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &1717586453 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 4382473310507521107, guid: 64ab77c252b62b14d9e95dfac3543552, type: 3}
-  m_PrefabInstance: {fileID: 674728016}
   m_PrefabAsset: {fileID: 0}
 --- !u!23 &1727258027 stripped
 MeshRenderer:
