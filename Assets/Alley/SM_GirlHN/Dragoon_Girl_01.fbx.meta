@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b5de6b33f36864f428dce6b5f50a5e65
+guid: 384b67b5ce5cf7c4a822def281fef903
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,43 +7,33 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Fbx Default Material 6
-    second: {fileID: 2100000, guid: 4825a45417813c645bef08d85195b674, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Head
-    second: {fileID: 2100000, guid: 9e0c3095e7b9cde49a8a63790e013786, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Iris
-    second: {fileID: 2100000, guid: 7802d138654ba0348a3fd1a95e263371, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: M_Belica_Blue_EyeRefractive_Inst
-    second: {fileID: 2100000, guid: b4c9a95cd61d6e8409bcfe341d32b5c5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: M_Belica_New_Head
-    second: {fileID: 2100000, guid: d5c64c289f2d72d469624fe94df34344, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: M_Water
+      name: M_Body
     second: {fileID: 2100000, guid: 1a9c01675d7d1f24ab9d699095776432, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: NewMaterial
+      name: M_Hair
     second: {fileID: 2100000, guid: 56a949b14d5a95d43b0008e954dacb9d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Teeth2
-    second: {fileID: 2100000, guid: 8cfaa69c6670d354b9e252cadb0b2ac2, type: 2}
+      name: M_Hat
+    second: {fileID: 2100000, guid: 9e0c3095e7b9cde49a8a63790e013786, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Head
+    second: {fileID: 2100000, guid: d5c64c289f2d72d469624fe94df34344, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Iris
+    second: {fileID: 2100000, guid: 7802d138654ba0348a3fd1a95e263371, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_outfit
+    second: {fileID: 2100000, guid: 83e88ed8419f0df469929d1689f8a46c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
