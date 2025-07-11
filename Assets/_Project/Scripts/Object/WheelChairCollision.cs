@@ -40,7 +40,7 @@ public class WheelChairCollision : MonoBehaviour
         movementController.enabled = false;
         cameraController.enabled = false;
         cameraBobbing.enabled = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
 
         float fallDuration = 1f; 
         float elapsedTime = 0f;

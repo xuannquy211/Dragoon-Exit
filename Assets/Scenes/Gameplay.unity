@@ -3055,17 +3055,6 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 9185116577081016556, guid: 64ab77c252b62b14d9e95dfac3543552, type: 3}
   m_PrefabInstance: {fileID: 674728016}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1889646575 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9088992088777296706, guid: 6b4e299bb8a234440bcd16c11cb2e390, type: 3}
-  m_PrefabInstance: {fileID: 4616331302229120901}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a53f4f012bd71a642afac16299494923, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1890570580
 GameObject:
   m_ObjectHideFlags: 0
@@ -3780,14 +3769,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6228581519404759741, guid: 6b4e299bb8a234440bcd16c11cb2e390, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7388375552775665548, guid: 6b4e299bb8a234440bcd16c11cb2e390, type: 3}
-      propertyPath: cameraBobbing
-      value: 
-      objectReference: {fileID: 1889646575}
     - target: {fileID: 8285650057741002033, guid: 6b4e299bb8a234440bcd16c11cb2e390, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.69
