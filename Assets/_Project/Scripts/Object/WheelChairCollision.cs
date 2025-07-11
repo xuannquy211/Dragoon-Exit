@@ -4,6 +4,7 @@ using System.Collections;
 public class WheelChairCollision : MonoBehaviour
 {
     [SerializeField] private WheelChairTrigger wheelChairTrigger;
+    
     private FirstPersonMovementController movementController;
     private FirstPersonCameraController cameraController;
     private Transform cameraTransform;
@@ -11,11 +12,11 @@ public class WheelChairCollision : MonoBehaviour
 
     private void Start()
     {
-        wheelChairTrigger = FindObjectOfType<WheelChairTrigger>();
-        movementController = FindObjectOfType<FirstPersonMovementController>();
-        cameraController = FindObjectOfType<FirstPersonCameraController>();
+        //wheelChairTrigger = FindObjectOfType<WheelChairTrigger>();
+        movementController = EnvironmentManager.Instance.PlayerManager.MovementController;
+        cameraController = EnvironmentManager.Instance.PlayerManager.ViewController;
         cameraTransform = cameraController.transform;
-        cameraBobbing = FindObjectOfType<CameraBobbing>();
+        cameraBobbing = EnvironmentManager.Instance.PlayerManager.CameraBobbing;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -24,7 +25,7 @@ public class WheelChairCollision : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
  
-            if (WheelChairTrigger.IsWheelChairMoving)
+            if (wheelChairTrigger.IsWheelChairMoving)
             {
                 if (EnvironmentManager.Instance != null)
                 {
@@ -36,7 +37,6 @@ public class WheelChairCollision : MonoBehaviour
 
     private IEnumerator FallAndRestart()
     {
- 
         movementController.enabled = false;
         cameraController.enabled = false;
         cameraBobbing.enabled = false;

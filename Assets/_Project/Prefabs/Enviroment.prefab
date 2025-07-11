@@ -8742,6 +8742,7 @@ MonoBehaviour:
   - {fileID: 2869966518310412878}
   - {fileID: 6870795071152109241}
   - {fileID: 8526171773205773781}
+  - {fileID: 7875236302116115885}
 --- !u!114 &7504494844119713930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18900,6 +18901,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fd581ac0fcb140c4199c53c987c70d0c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8549046946858344293}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fd581ac0fcb140c4199c53c987c70d0c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5403144416298223860}
   m_SourcePrefab: {fileID: 100100000, guid: fd581ac0fcb140c4199c53c987c70d0c, type: 3}
 --- !u!1 &2407733507717765107 stripped
 GameObject:
@@ -18927,6 +18931,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.4
   m_Center: {x: 0, y: 0.27, z: -0.13892819}
+--- !u!114 &5403144416298223860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2407733507717765107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f32d834c03363c4c9ac25e0f82c2d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheelChairTrigger: {fileID: 1216198388976608684}
 --- !u!4 &3036037970225450313 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fd581ac0fcb140c4199c53c987c70d0c, type: 3}

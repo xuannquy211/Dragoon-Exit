@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 7388375552775665548}
   m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -313,6 +313,7 @@ MonoBehaviour:
   _viewController: {fileID: 4051464058045755895}
   _movementController: {fileID: 8258806805887348114}
   rigidbody: {fileID: 834828142541241067}
+  cameraBobbing: {fileID: 9088992088777296706}
 --- !u!1 &7792981341334561927
 GameObject:
   m_ObjectHideFlags: 0

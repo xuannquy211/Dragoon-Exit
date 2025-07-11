@@ -13,7 +13,7 @@ public class SlowChangeWallColorAbnormality : Abnormality
     {
         isActive = true;
         
-        gpuInstancing.Active(false);
+        //gpuInstancing.Active(false);
         foreach (var wall in walls)
         {
             var mats = wall.materials;
@@ -26,7 +26,7 @@ public class SlowChangeWallColorAbnormality : Abnormality
     {
         if (isActive)
         {
-            gpuInstancing.Active(true);
+            //gpuInstancing.Active(true);
             foreach (var wall in walls)
             {
                 var mats = wall.materials;
