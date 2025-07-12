@@ -20,12 +20,6 @@ public class EnvironmentManager : MonoBehaviour
 
     private bool _isHavingAbnormality = false;
     private Transform _destination;
-    private Vector3 initialCameraLocalPosition;
-    private Quaternion initialCameraLocalRotation;
-    private FirstPersonCameraController cameraController;
-    private FirstPersonMovementController movementController;
-    private CameraBobbing cameraBobbing;
-
     public Volume PostProcessing => postProcessing;
     
     public PlayerManager PlayerManager => playerManager;
@@ -322,14 +316,11 @@ public class EnvironmentManager : MonoBehaviour
             env.ClearAbnormalities();
             env.ReInit();
         }
-
-        var cameraBobbing = FindObjectOfType<CameraBobbing>();
-        cameraBobbing.enabled = true;
-
-        player.position = playerPoint.position;
-        player.rotation = playerPoint.rotation;
-        cameraController.transform.localPosition = initialCameraLocalPosition;
-        cameraController.transform.localRotation = initialCameraLocalRotation;
+        
+        playerManager.MainCamera.transform.localPosition = Vector3.zero;
+        playerManager.MainCamera.transform.localRotation = Quaternion.identity;
+        
+        playerManager.CameraBobbing.enabled = true;
 
         if (UserData.IsFirstTime) return;
         RandomAbnormality();

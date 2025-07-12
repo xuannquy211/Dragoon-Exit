@@ -314,6 +314,7 @@ MonoBehaviour:
   _movementController: {fileID: 8258806805887348114}
   rigidbody: {fileID: 834828142541241067}
   cameraBobbing: {fileID: 9088992088777296706}
+  mainCamera: {fileID: 4158590233314150830}
 --- !u!1 &7792981341334561927
 GameObject:
   m_ObjectHideFlags: 0
