@@ -3,7 +3,27 @@ guid: 030d453628dcc5346a100affb7b696fd
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Box
+    second: {fileID: 2100000, guid: aad09a94b8f1fb8489cc60c78a242c54, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Fruit
+    second: {fileID: 2100000, guid: d04779f0fef354b4588afd5f630c82ec, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Box_B
+    second: {fileID: 2800000, guid: 1dac908f79987c649962dc2541e4be1c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: T_Fruit_B
+    second: {fileID: 2800000, guid: c1d7e8f5f4c04c74c89e6b573795f8c3, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

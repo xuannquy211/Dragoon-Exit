@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using Random = UnityEngine.Random;
 
 public class EnvironmentManager : MonoBehaviour
@@ -15,6 +16,7 @@ public class EnvironmentManager : MonoBehaviour
     [SerializeField] private List<EnvironmentController> _environments;
     [SerializeField] private Transform light, ground;
     [SerializeField] private Transform playerPoint;
+    [SerializeField] private Volume postProcessing;
 
     private bool _isHavingAbnormality = false;
     private Transform _destination;
@@ -23,6 +25,9 @@ public class EnvironmentManager : MonoBehaviour
     private FirstPersonCameraController cameraController;
     private FirstPersonMovementController movementController;
     private CameraBobbing cameraBobbing;
+
+    public Volume PostProcessing => postProcessing;
+    
     public PlayerManager PlayerManager => playerManager;
 
     public static List<int> AbnormalitiesSeen = new List<int>();

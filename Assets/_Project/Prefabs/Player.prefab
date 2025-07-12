@@ -467,8 +467,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   variant: 2
-  quality: 4
-  antiGhosting: 0.75
+  quality: 2
+  antiGhosting: 1
   mipmapBiasOverride: 1
   autoTextureUpdate: 1
   mipMapUpdateFrequency: 2
@@ -491,10 +491,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerRigidbody: {fileID: 834828142541241067}
   idleAmplitude: 0.02
-  idleFrequency: 1.5
-  moveAmplitude: 0.05
-  moveFrequency: 10
-  maxSpeedForBobbing: 6
+  idleFrequency: 0.5
+  moveAmplitude: 0.2
+  moveFrequency: 1
+  maxSpeedForBobbing: 1
 --- !u!1 &7885509245994275490
 GameObject:
   m_ObjectHideFlags: 0
