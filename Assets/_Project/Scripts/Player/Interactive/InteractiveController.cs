@@ -22,7 +22,7 @@ public class InteractiveController : MonoBehaviour
             GameplayUIManager.Instance.ActiveInteractButton();
             if (Active)
             {
-                InteractiveObject.InteractiveObjects[hit.collider].Activate();
+                InteractiveObject.InteractiveObjects[hit.collider][0].Activate();
                 Active = false;
             }
         }

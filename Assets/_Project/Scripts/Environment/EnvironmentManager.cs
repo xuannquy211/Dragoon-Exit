@@ -20,6 +20,7 @@ public class EnvironmentManager : MonoBehaviour
 
     private bool _isHavingAbnormality = false;
     private Transform _destination;
+    
     public Volume PostProcessing => postProcessing;
     
     public PlayerManager PlayerManager => playerManager;
@@ -49,7 +50,8 @@ public class EnvironmentManager : MonoBehaviour
             _environments[1].ClearAbnormalities();
             _environments[2].ClearAbnormalities();
         }
-
+        
+        if(CurrentWaveIndex >= Configs.TARGET_WAVE) ActiveDestination();
         UserData.SessionCount++;
     }
 
@@ -178,6 +180,8 @@ public class EnvironmentManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GameManager.State != GameState.PLAYING) return;
+        
         var centerEnvironment = GetCenterEnvironment();
         var offset =  1f - 2f * centerEnvironment.transform.rotation.y;
         var centerEnvironmentPosition = centerEnvironment.transform.position + centerOffset * offset;
@@ -299,6 +303,7 @@ public class EnvironmentManager : MonoBehaviour
 
     public void Restart()
     {
+        GameManager.State = GameState.PAUSED;
         if(!UserData.IsFirstTime) CurrentWaveIndex = 0;
 
         GameplayUIManager.Instance.CloseEye(ResetEnvironment);
@@ -306,6 +311,9 @@ public class EnvironmentManager : MonoBehaviour
 
     private void ResetEnvironment()
     {
+        if(_destination) _destination.gameObject.SetActive(false);
+        foreach (var environment in _environments) environment.gameObject.SetActive(true);
+        
         player.position = playerPoint.position;
         player.rotation = playerPoint.rotation;
         playerManager.ViewController.enabled = true;
@@ -322,6 +330,8 @@ public class EnvironmentManager : MonoBehaviour
         
         playerManager.CameraBobbing.enabled = true;
 
+        GameManager.State = GameState.PLAYING;
+        
         if (UserData.IsFirstTime) return;
         RandomAbnormality();
     }

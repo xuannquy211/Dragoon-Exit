@@ -4,12 +4,22 @@ using UnityEngine;
 
 public abstract class InteractiveObject : MonoBehaviour
 {
-    public static readonly Dictionary<Collider, InteractiveObject> InteractiveObjects = new Dictionary<Collider, InteractiveObject>(); 
+    [SerializeField] private Collider _collider;
     
+    public static readonly Dictionary<Collider, List<InteractiveObject>> InteractiveObjects =
+        new Dictionary<Collider, List<InteractiveObject>>();
+
     public abstract void Activate();
 
-    private void Awake()
+    private void OnEnable()
     {
-        InteractiveObjects.Add(GetComponent<Collider>(), this);
+        if (InteractiveObjects.TryAdd(_collider, new List<InteractiveObject>() { this })) return;
+        if (InteractiveObjects[_collider].Contains(this)) return; 
+        InteractiveObjects[_collider].Add(this);
+    }
+
+    private void OnDisable()
+    {
+        if (InteractiveObjects[_collider].Contains(this)) InteractiveObjects[_collider].Remove(this);
     }
 }

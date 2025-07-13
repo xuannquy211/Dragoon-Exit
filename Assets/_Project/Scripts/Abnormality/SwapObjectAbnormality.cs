@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DoorKnockScreamAbnormality : Abnormality
+public class SwapObjectAbnormality : Abnormality
 {
     [SerializeField] private GameObject[] rawKnocks;
     [SerializeField] private GameObject[] abnormalities;
