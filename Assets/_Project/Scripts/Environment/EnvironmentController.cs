@@ -97,6 +97,8 @@ public class EnvironmentController : MonoBehaviour
         girl.position = girlStartPoint.position;
         girl.forward = Vector3.forward;
         girlController.SetAnim("Idle");
+        girlController.SetHatActive(true);
+        girlController.SetHeadActive(true);
     }
 
     public void ActiveNumber(int index)
