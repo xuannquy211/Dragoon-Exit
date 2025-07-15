@@ -97,24 +97,53 @@ public class EnvironmentManager : MonoBehaviour
         player.SetParent(currentCenter.transform);
         light.SetParent(currentCenter.transform);
         ground.SetParent(currentCenter.transform);
-        currentCenter.transform.position = Vector3.zero;
-        currentCenter.transform.rotation = Quaternion.identity;
 
-        var nextEuler = currentCenter.transform.eulerAngles;
-        var backEuler = Mathf.Abs(currentCenter.transform.rotation.y - 1);
-        oldBack.transform.eulerAngles = nextEuler;
-        oldBack.transform.position = currentCenter.NextEnvironmentTarget.position;
-        oldCenter.transform.rotation = new Quaternion(0f, backEuler, 0f, 0f);
-        oldCenter.transform.position = currentCenter.BackEnvironmentTarget.position;
+        var dot = Vector3.Dot(Vector3.right, player.forward);
+        if (dot < 0f)
+        {
+            GameplayUIManager.Instance.CloseEye(() =>
+            {
+                currentCenter.transform.position = Vector3.zero;
+                currentCenter.transform.rotation = Quaternion.identity;
 
-        _environments.Insert(0, oldCenter);
-        _environments.Add(oldBack);
+                var nextEuler = currentCenter.transform.eulerAngles;
+                var backEuler = Mathf.Abs(currentCenter.transform.rotation.y - 1);
+                oldBack.transform.eulerAngles = nextEuler;
+                oldBack.transform.position = currentCenter.NextEnvironmentTarget.position;
+                oldCenter.transform.rotation = new Quaternion(0f, backEuler, 0f, 0f);
+                oldCenter.transform.position = currentCenter.BackEnvironmentTarget.position;
 
-        ActiveEnvironment();
-        UpdateHolderToCenter();
-        GameSignal.MOVE_TO_ENVIRONMENT.Notify(_environments[1]);
+                _environments.Insert(0, oldCenter);
+                _environments.Add(oldBack);
 
-        UpdateEnvironmentNames();
+                ActiveEnvironment();
+                UpdateHolderToCenter();
+                GameSignal.MOVE_TO_ENVIRONMENT.Notify(_environments[1]);
+
+                UpdateEnvironmentNames();
+            }, 0.25f);
+        }
+        else
+        {
+            currentCenter.transform.position = Vector3.zero;
+            currentCenter.transform.rotation = Quaternion.identity;
+
+            var nextEuler = currentCenter.transform.eulerAngles;
+            var backEuler = Mathf.Abs(currentCenter.transform.rotation.y - 1);
+            oldBack.transform.eulerAngles = nextEuler;
+            oldBack.transform.position = currentCenter.NextEnvironmentTarget.position;
+            oldCenter.transform.rotation = new Quaternion(0f, backEuler, 0f, 0f);
+            oldCenter.transform.position = currentCenter.BackEnvironmentTarget.position;
+
+            _environments.Insert(0, oldCenter);
+            _environments.Add(oldBack);
+
+            ActiveEnvironment();
+            UpdateHolderToCenter();
+            GameSignal.MOVE_TO_ENVIRONMENT.Notify(_environments[1]);
+
+            UpdateEnvironmentNames();
+        }
     }
 
     private void ShiftToBack()
@@ -125,9 +154,11 @@ public class EnvironmentManager : MonoBehaviour
         _environments.RemoveAt(1);
 
         var currentCenter = _environments[0];
+
         player.SetParent(currentCenter.transform);
         light.SetParent(currentCenter.transform);
         ground.SetParent(currentCenter.transform);
+
         currentCenter.transform.position = Vector3.zero;
         currentCenter.transform.rotation = Quaternion.identity;
 
@@ -265,7 +296,6 @@ public class EnvironmentManager : MonoBehaviour
             centerEnvironment.ActiveNumber(CurrentWaveIndex);
             _environments[0].ActiveNumber(CurrentWaveIndex + 1);
             _environments[2].ActiveNumber(0);
-
         }
         else
         {
@@ -352,5 +382,4 @@ public class EnvironmentManager : MonoBehaviour
     {
         GetCenterEnvironment().ActiveAbnormality(index);
     }
-
 }

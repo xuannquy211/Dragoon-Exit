@@ -11,7 +11,7 @@ public class DoorMadAbnormality : Abnormality
         foreach (var door in doors)
         {
             door.enabled = false;
-            door.transform.localRotation = Quaternion.identity;
+            door.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
         }
         trigger.SetActive(true);
     }
@@ -21,7 +21,7 @@ public class DoorMadAbnormality : Abnormality
         foreach (var door in doors)
         {
             door.enabled = false;
-            door.transform.localRotation = Quaternion.identity;
+            door.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
         }
         trigger.SetActive(false);
     }

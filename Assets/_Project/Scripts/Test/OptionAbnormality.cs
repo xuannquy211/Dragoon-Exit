@@ -23,6 +23,5 @@ public class OptionAbnormality : MonoBehaviour
     private void OnClick()
     {
         EnvironmentManager.Instance.ActiveAbnormality(_index);
-        GameplayUIManager.Instance.CloseTest();
     }
 }

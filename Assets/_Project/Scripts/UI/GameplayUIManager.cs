@@ -5,11 +5,10 @@ using UnityEngine.UI;
 
 public class GameplayUIManager : MonoBehaviour
 {
-    [SerializeField] private Button interactButton, pauseButton, testButton;
+    [SerializeField] private Button interactButton, pauseButton;
     [SerializeField] private RectTransform crosshair;
     [SerializeField] private Image panel;
     [SerializeField] private GameObject pausePopup;
-    [SerializeField] private GameObject testPopup;
 
     private float _crosshairSize = 1f;
     
@@ -24,7 +23,6 @@ public class GameplayUIManager : MonoBehaviour
     {
         interactButton.onClick.AddListener(OnClickInteractButton);
         pauseButton.onClick.AddListener(OnClickPause);
-        testButton.onClick.AddListener(OnClickTest);
         OpenEye();
     }
 
@@ -39,12 +37,12 @@ public class GameplayUIManager : MonoBehaviour
         effect.Append(panel.DOFade(0f, 0.5f).OnComplete(() => panel.gameObject.SetActive(false)));
     }
 
-    public void CloseEye(Action onClose = null)
+    public void CloseEye(Action onClose = null, float durationScale = 1f)
     {
         var effect = DOTween.Sequence();
         panel.gameObject.SetActive(true);
-        effect.Append(panel.DOFade(1f, 2f). OnComplete(() => onClose?.Invoke()));
-        effect.Append(panel.DOFade(0f, 0.5f).OnComplete(() => panel.gameObject.SetActive(false)));
+        effect.Append(panel.DOFade(1f, 2f * durationScale). OnComplete(() => onClose?.Invoke()));
+        effect.Append(panel.DOFade(0f, 0.5f * durationScale).OnComplete(() => panel.gameObject.SetActive(false)));
     }
     
     public void ActiveInteractButton(bool isActive = true)
@@ -65,16 +63,6 @@ public class GameplayUIManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         pausePopup.SetActive(true);
-    }
-
-    private void OnClickTest()
-    {
-        testPopup.SetActive(true);
-    }
-
-    public void CloseTest()
-    {
-        testPopup.SetActive(false);
     }
     
     private void Update()

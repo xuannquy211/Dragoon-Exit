@@ -17,7 +17,7 @@ public class SlowChangeWallColorAbnormality : Abnormality
         foreach (var wall in walls)
         {
             var mats = wall.materials;
-            mats[0].color = colorTarget;
+            mats[1].color = colorTarget;
             wall.materials = mats;
         }
     }
@@ -30,7 +30,7 @@ public class SlowChangeWallColorAbnormality : Abnormality
             foreach (var wall in walls)
             {
                 var mats = wall.materials;
-                mats[0].color = Color.white;
+                mats[1].color = Color.white;
                 wall.materials = mats;
             }
             isActive = false;
