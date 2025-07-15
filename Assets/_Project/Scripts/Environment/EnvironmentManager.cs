@@ -345,12 +345,7 @@ public class EnvironmentManager : MonoBehaviour
     {
         if (_destination) _destination.gameObject.SetActive(false);
         foreach (var environment in _environments) environment.gameObject.SetActive(true);
-
-        player.position = playerPoint.position;
-        player.rotation = playerPoint.rotation;
-        playerManager.ViewController.enabled = true;
-        playerManager.MovementController.enabled = true;
-
+        
         foreach (var env in _environments)
         {
             env.ClearAbnormalities();
@@ -359,7 +354,13 @@ public class EnvironmentManager : MonoBehaviour
 
         playerManager.MainCamera.transform.localPosition = Vector3.zero;
         playerManager.MainCamera.transform.localRotation = Quaternion.identity;
-
+        playerManager.CameraHolder.transform.localPosition = new Vector3(0f ,2f, 0f);
+        playerManager.CameraHolder.transform.localRotation = Quaternion.identity;
+        player.position = playerPoint.position;
+        player.rotation = playerPoint.rotation;
+        playerManager.ViewController.enabled = true;
+        playerManager.MovementController.enabled = true;
+        
         playerManager.CameraBobbing.enabled = true;
 
         GameManager.State = GameState.PLAYING;

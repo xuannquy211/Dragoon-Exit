@@ -7,11 +7,13 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private Rigidbody rigidbody;
     [SerializeField] private CameraBobbing cameraBobbing;
     [SerializeField] private Transform mainCamera;
+    [SerializeField] private Transform cameraHolder;
 
     public FirstPersonCameraController ViewController => _viewController;
     public FirstPersonMovementController MovementController => _movementController;
     public CameraBobbing CameraBobbing => cameraBobbing;
     public Transform MainCamera => mainCamera;
+    public Transform CameraHolder => cameraHolder;
 
     public void Stop()
     {
