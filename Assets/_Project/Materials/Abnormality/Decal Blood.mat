@@ -36,6 +36,14 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Base_Map:
+        m_Texture: {fileID: 2800000, guid: 1643bf1e16128d548b9c1e825de20761, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Normal_Map:
+        m_Texture: {fileID: 2800000, guid: f25f10de37ef6a44ab1c3d4d438917f5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Alpha_Map:
         m_Texture: {fileID: 2800000, guid: 04faead8b5205d34584886719d05f816, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -66,6 +74,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - Normal_Blend: 0.5
     - _Alpha: 1
     - _DecalMeshBiasType: 0
     - _DecalMeshDepthBias: 0

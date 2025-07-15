@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class GameplayUIManager : MonoBehaviour
 {
-    [SerializeField] private Button interactButton, pauseButton;
+    [SerializeField] private Button interactButton, pauseButton, testButton;
     [SerializeField] private RectTransform crosshair;
     [SerializeField] private Image panel;
     [SerializeField] private GameObject pausePopup;
+    [SerializeField] private GameObject testPopup;
 
     private float _crosshairSize = 1f;
     
@@ -23,6 +24,7 @@ public class GameplayUIManager : MonoBehaviour
     {
         interactButton.onClick.AddListener(OnClickInteractButton);
         pauseButton.onClick.AddListener(OnClickPause);
+        testButton.onClick.AddListener(OnClickTest);
         OpenEye();
     }
 
@@ -65,6 +67,16 @@ public class GameplayUIManager : MonoBehaviour
         pausePopup.SetActive(true);
     }
 
+    private void OnClickTest()
+    {
+        testPopup.SetActive(true);
+    }
+
+    public void CloseTest()
+    {
+        testPopup.SetActive(false);
+    }
+    
     private void Update()
     {
         crosshair.localScale = Vector3.Lerp(crosshair.localScale, Vector3.one * _crosshairSize, Time.deltaTime * 10f);
