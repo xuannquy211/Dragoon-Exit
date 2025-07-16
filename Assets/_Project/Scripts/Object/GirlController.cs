@@ -10,7 +10,12 @@ public class GirlController : MonoBehaviour
     [SerializeField] private AnimationCurve wayCurve;
     [SerializeField] private Vector3 crossAxis;
     [SerializeField] private float speed;
-    
+    [SerializeField] private GameObject hatObject;
+    [SerializeField] private GameObject headObject;
+    [SerializeField] private GameObject eyeballObject;
+    [SerializeField] private GameObject eyelashObject;
+    [SerializeField] private GameObject hairObject;
+
     private bool _isWalking;
     private float _currentProgress;
     private Vector3 _direction;
@@ -104,5 +109,18 @@ public class GirlController : MonoBehaviour
     public void SetAnim(string anim)
     {
         animator.Play(anim);
+    }
+
+    public void SetHatActive(bool active)
+    {
+        hatObject.SetActive(active);
+    }
+
+    public void SetHeadActive(bool active)
+    {
+        headObject.SetActive(active);
+        eyeballObject.SetActive(active);
+        eyelashObject.SetActive(active);
+        hairObject.SetActive(active);
     }
 }
