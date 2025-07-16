@@ -14,6 +14,9 @@ public class GirlCryingJumpscareTrigger : MonoBehaviour
         {
             mat.DOFloat(1.5f, "_Alpha", 5f);
         }
+        
+        _girlGhostJumpScare.SetActive(true);
+        
         UnityMainThread.Instance.AddDelayAction(5f, () =>
         {
             _girlCrying.SetActive(false);

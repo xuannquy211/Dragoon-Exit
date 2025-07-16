@@ -14,6 +14,7 @@ public class PlayerManager : MonoBehaviour
     public CameraBobbing CameraBobbing => cameraBobbing;
     public Transform MainCamera => mainCamera;
     public Transform CameraHolder => cameraHolder;
+    public Rigidbody Rigidbody => rigidbody;
 
     public void Stop()
     {

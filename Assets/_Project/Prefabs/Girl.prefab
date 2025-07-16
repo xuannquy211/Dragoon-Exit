@@ -19,6 +19,8 @@ GameObject:
   - component: {fileID: 1097881998201622564}
   - component: {fileID: 8686027273586596342}
   - component: {fileID: 502795915298071198}
+  - component: {fileID: 7469900457804030097}
+  - component: {fileID: 2911317707315204448}
   m_Layer: 8
   m_Name: Girl
   m_TagString: Untagged
@@ -136,7 +138,7 @@ NavMeshAgent:
   m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.25
-  m_Speed: 10
+  m_Speed: 9.5
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 360
@@ -160,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c837a0bc113f648843306c2ce5af8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSpecial: 0
+  isSpecial: 1
   girlController: {fileID: 6134681625651919464}
   agent: {fileID: 2847691100390776611}
   audioSource: {fileID: 1097881998201622564}
@@ -358,6 +360,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSpecial: 0
   _girlController: {fileID: 6134681625651919464}
+--- !u!114 &7469900457804030097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6599649104573348159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac5f27bc7c30445458980a920c77e519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSpecial: 0
+  obj:
+  - {fileID: 7917304048518797787}
+--- !u!114 &2911317707315204448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6599649104573348159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23f33014c2b15ed428c8030f615738ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSpecial: 0
+  _animator: {fileID: 6658106216433065633}
 --- !u!1001 &1618163910969954691
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -366,6 +397,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5959467548890495763}
     m_Modifications:
+    - target: {fileID: -8714858974473196810, guid: 7ec4f8c20a2f6c443aabd9ccea33cfb6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7ec4f8c20a2f6c443aabd9ccea33cfb6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -417,6 +452,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7ec4f8c20a2f6c443aabd9ccea33cfb6, type: 3}
       propertyPath: m_Name
       value: Dragoon_Girl
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038713285134331360, guid: 7ec4f8c20a2f6c443aabd9ccea33cfb6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d2de66946e0b87440926532d7b61e0cc, type: 2}
+    - target: {fileID: 1557604369392777645, guid: 7ec4f8c20a2f6c443aabd9ccea33cfb6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3298098594209910173, guid: 7ec4f8c20a2f6c443aabd9ccea33cfb6, type: 3}
       propertyPath: m_IsActive
