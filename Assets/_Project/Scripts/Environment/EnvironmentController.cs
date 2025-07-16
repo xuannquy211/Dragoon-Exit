@@ -21,7 +21,7 @@ public class EnvironmentController : MonoBehaviour
     public Transform BackEnvironmentTarget => backEnvironmentTarget;
     public Transform NextDestinationTarget => nextDestinationTarget;
     public Transform BackDestinationTarget => backDestinationTarget;
-    private List<int> _abnormalitiesIndices;
+    private Dictionary<bool, List<int>> _abnormalitiesDictionary;
 
     private void Start()
     {
@@ -30,32 +30,42 @@ public class EnvironmentController : MonoBehaviour
 
     public void InitAbnormality(List<int> abnormalitiesUsed)
     {
-        _abnormalitiesIndices = new List<int>();
+        _abnormalitiesDictionary = new Dictionary<bool, List<int>>
+        {
+            { false, new List<int>() },
+            { true, new List<int>() }
+        };
+        
         for (var i = 0; i < abnormalities.Length; i++)
         {
             if (abnormalitiesUsed.Contains(i)) continue;
-            _abnormalitiesIndices.Add(i);
+            _abnormalitiesDictionary[abnormalities[i].IsSpecial].Add(i);
         }
         
-        if(_abnormalitiesIndices.Count == 0) ReInitAbnormalities();
+        if(_abnormalitiesDictionary[true].Count == 0) ReInitAbnormalitiesDictionary(true);
+        if(_abnormalitiesDictionary[false].Count == 0) ReInitAbnormalitiesDictionary(false);
     }
 
-    public void ReInitAbnormalities()
+    private void ReInitAbnormalitiesDictionary(bool isSpecial)
     {
-        _abnormalitiesIndices = new List<int>();
-        for (var i = 0; i < abnormalities.Length; i++)
-        {
-            _abnormalitiesIndices.Add(i);
-        }
+        foreach (var id in _abnormalitiesDictionary[isSpecial]) UserData.RemoveAbnormalityUsed(id);
         
-        UserData.ClearAbnormalityUsed();
+        _abnormalitiesDictionary[isSpecial].Clear();
+        for(var i = 0; i < abnormalities.Length; i++)
+        {
+            if(abnormalities[i].IsSpecial != isSpecial) continue;
+            _abnormalitiesDictionary[isSpecial].Add(i);
+        }
     }
 
     public void ActiveAbnormality()
     {
-        var randomIndex = Random.Range(0, _abnormalitiesIndices.Count);
-        var index = _abnormalitiesIndices[randomIndex];
-        Debug.Log($"Abnormality: {index}");
+        var rateSpecialAbnormality = UserData.RateSpecialAbnormality;
+        Debug.Log($"Rate special abnormality: {rateSpecialAbnormality * 100f}%");
+        var isSpecial = Random.value < rateSpecialAbnormality;
+        
+        var randomIndex = Random.Range(0, _abnormalitiesDictionary[isSpecial].Count);
+        var index = _abnormalitiesDictionary[isSpecial][randomIndex];
         var totalAbnormalities = abnormalities.Length;
         for (var i = 0; i < totalAbnormalities; i++)
         {
@@ -64,21 +74,27 @@ public class EnvironmentController : MonoBehaviour
         }
         abnormalities[index].Active();
         
-        _abnormalitiesIndices.RemoveAt(randomIndex);
+        _abnormalitiesDictionary[isSpecial].RemoveAt(randomIndex);
         UserData.AddAbnormalityUsed(index);
         EnvironmentManager.AbnormalitiesSeen.Add(index);
         
-        if(_abnormalitiesIndices.Count == 0) ReInitAbnormalities();
+        if(_abnormalitiesDictionary[isSpecial].Count == 0) ReInitAbnormalitiesDictionary(isSpecial);
+        if (isSpecial) UserData.RateSpecialAbnormality = 0f;
+        else UserData.RateSpecialAbnormality += 0.4f;
     }
 
     private void OnAddAbnormalityUsed(int index)
     {
-        if (_abnormalitiesIndices.Contains(index))
+        if (_abnormalitiesDictionary[true].Contains(index))
         {
-            _abnormalitiesIndices.Remove(index);
-            if(_abnormalitiesIndices.Count == 0) ReInitAbnormalities();
+            _abnormalitiesDictionary[true].Remove(index);
+            if(_abnormalitiesDictionary[true].Count == 0) ReInitAbnormalitiesDictionary(true);
         }
-        
+        else if (_abnormalitiesDictionary[false].Contains(index))
+        {
+            _abnormalitiesDictionary[false].Remove(index);
+            if(_abnormalitiesDictionary[false].Count == 0) ReInitAbnormalitiesDictionary(false);
+        }
     }
 
     public void ClearAbnormalities()

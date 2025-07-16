@@ -54,4 +54,18 @@ public class UserData : DataPref<UserData>
         data.AbnormalitiesUsed.Clear();
         SaveData();
     }
+
+    public static void RemoveAbnormalityUsed(int abnormality)
+    {
+        var data = GetData();
+        data.AbnormalitiesUsed.Remove(abnormality);
+        SaveData();
+    }
+    
+    private const string RateSpecialAbnormalityKey = "RateSpecialAbnormality";
+    public static float RateSpecialAbnormality
+    {
+        get => PlayerPrefs.GetFloat(RateSpecialAbnormalityKey, 0f);
+        set => PlayerPrefs.SetFloat(RateSpecialAbnormalityKey, value);
+    }
 }

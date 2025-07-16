@@ -20,6 +20,7 @@ public class EnvironmentManager : MonoBehaviour
 
     private bool _isHavingAbnormality = false;
     private Transform _destination;
+    private bool _stopChecking = false;
 
     public Volume PostProcessing => postProcessing;
 
@@ -101,6 +102,7 @@ public class EnvironmentManager : MonoBehaviour
         var dot = Vector3.Dot(Vector3.right, player.forward);
         if (dot < 0f)
         {
+            _stopChecking = true;
             GameplayUIManager.Instance.CloseEye(() =>
             {
                 currentCenter.transform.position = Vector3.zero;
@@ -121,6 +123,28 @@ public class EnvironmentManager : MonoBehaviour
                 GameSignal.MOVE_TO_ENVIRONMENT.Notify(_environments[1]);
 
                 UpdateEnvironmentNames();
+                _stopChecking = false;
+                
+                if (UserData.IsFirstTime)
+                {
+                    _totalPreviewMap--;
+                    if (_totalPreviewMap > 0)
+                    {
+                        return;
+                    }
+
+                    UserData.IsFirstTime = false;
+                    RandomAbnormality();
+                }
+                else RandomAbnormality();
+
+                if (CurrentWaveIndex != Configs.TARGET_WAVE)
+                {
+                    if (_destination) _destination.gameObject.SetActive(false);
+                    return;
+                }
+
+                ActiveDestination();
             }, 0.25f);
         }
         else
@@ -143,6 +167,27 @@ public class EnvironmentManager : MonoBehaviour
             GameSignal.MOVE_TO_ENVIRONMENT.Notify(_environments[1]);
 
             UpdateEnvironmentNames();
+            
+            if (UserData.IsFirstTime)
+            {
+                _totalPreviewMap--;
+                if (_totalPreviewMap > 0)
+                {
+                    return;
+                }
+
+                UserData.IsFirstTime = false;
+                RandomAbnormality();
+            }
+            else RandomAbnormality();
+
+            if (CurrentWaveIndex != Configs.TARGET_WAVE)
+            {
+                if (_destination) _destination.gameObject.SetActive(false);
+                return;
+            }
+
+            ActiveDestination();
         }
     }
 
@@ -177,6 +222,27 @@ public class EnvironmentManager : MonoBehaviour
         GameSignal.MOVE_TO_ENVIRONMENT.Notify(_environments[1]);
 
         UpdateEnvironmentNames();
+        
+        if (UserData.IsFirstTime)
+        {
+            _totalPreviewMap--;
+            if (_totalPreviewMap > 0)
+            {
+                return;
+            }
+
+            UserData.IsFirstTime = false;
+            RandomAbnormality();
+        }
+        else RandomAbnormality();
+
+        if (CurrentWaveIndex != Configs.TARGET_WAVE)
+        {
+            if (_destination) _destination.gameObject.SetActive(false);
+            return;
+        }
+
+        ActiveDestination();
     }
 
     private void ActiveEnvironment()
@@ -213,6 +279,7 @@ public class EnvironmentManager : MonoBehaviour
     private void FixedUpdate()
     {
         if (GameManager.State != GameState.PLAYING) return;
+        if (_stopChecking) return;
 
         var centerEnvironment = GetCenterEnvironment();
         var offset = 1f - 2f * centerEnvironment.transform.rotation.y;
@@ -238,27 +305,6 @@ public class EnvironmentManager : MonoBehaviour
             if (CurrentWaveIndex > Configs.TARGET_WAVE) return;
             ShiftToNext();
         }
-
-        if (UserData.IsFirstTime)
-        {
-            _totalPreviewMap--;
-            if (_totalPreviewMap > 0)
-            {
-                return;
-            }
-
-            UserData.IsFirstTime = false;
-            RandomAbnormality();
-        }
-        else RandomAbnormality();
-
-        if (CurrentWaveIndex != Configs.TARGET_WAVE)
-        {
-            if (_destination) _destination.gameObject.SetActive(false);
-            return;
-        }
-
-        ActiveDestination();
     }
 
     private void ActiveDestination()
