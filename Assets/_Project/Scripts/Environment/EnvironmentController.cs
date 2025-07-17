@@ -66,6 +66,9 @@ public class EnvironmentController : MonoBehaviour
         
         var randomIndex = Random.Range(0, _abnormalitiesDictionary[isSpecial].Count);
         var index = _abnormalitiesDictionary[isSpecial][randomIndex];
+        
+        Debug.Log("Abnormality: " + index);
+        
         var totalAbnormalities = abnormalities.Length;
         for (var i = 0; i < totalAbnormalities; i++)
         {

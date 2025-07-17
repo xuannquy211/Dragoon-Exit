@@ -50,7 +50,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -4882,7 +4882,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -9582,7 +9582,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2946078902593383234}
-  - component: {fileID: 2946078902603235780}
   m_Layer: 6
   m_Name: RainPrefab
   m_TagString: Untagged
@@ -9606,38 +9605,6 @@ Transform:
   - {fileID: 2946078902593293044}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2946078902603235780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2946078902593566022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ff5b1f04dece7440b6f0886ee13f147, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Camera: {fileID: 0}
-  FollowCamera: 1
-  RainSoundLight: {fileID: 8300000, guid: c980eda1ec9b9ff4b930005976b00f41, type: 3}
-  RainSoundMedium: {fileID: 8300000, guid: 3359e9d10af08ca46ae396298dbd1ed9, type: 3}
-  RainSoundHeavy: {fileID: 8300000, guid: db1471092e49b7445bfbd374a17ea61a, type: 3}
-  RainSoundAudioMixer: {fileID: 0}
-  RainIntensity: 0.75
-  RainFallParticleSystem: {fileID: 2946078902578077590}
-  RainExplosionParticleSystem: {fileID: 0}
-  RainMistParticleSystem: {fileID: 2946078902578080324}
-  RainMistThreshold: 0.5
-  WindSound: {fileID: 8300000, guid: f9826f595784348498b57bcf6b2c8b1f, type: 3}
-  WindSoundVolumeModifier: 0.5
-  WindZone: {fileID: 0}
-  WindSpeedRange: {x: 50, y: 100, z: 500}
-  WindChangeInterval: {x: 5, y: 30}
-  EnableWind: 0
-  RainHeight: 25
-  RainForwardOffset: -7
-  RainMistHeight: 3
 --- !u!1 &2946078902593574242
 GameObject:
   m_ObjectHideFlags: 0
@@ -9688,7 +9655,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:

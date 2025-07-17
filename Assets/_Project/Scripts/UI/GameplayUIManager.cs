@@ -9,6 +9,7 @@ public class GameplayUIManager : MonoBehaviour
     [SerializeField] private RectTransform crosshair;
     [SerializeField] private Image panel;
     [SerializeField] private GameObject pausePopup;
+    [SerializeField] private CreditPopup creditsPopup;
 
     private float _crosshairSize = 1f;
     
@@ -63,6 +64,12 @@ public class GameplayUIManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         pausePopup.SetActive(true);
+    }
+
+    public void ShowCreditPopup(Action onComplete = null)
+    {
+        creditsPopup.gameObject.SetActive(true);
+        creditsPopup.Init(onComplete);
     }
     
     private void Update()

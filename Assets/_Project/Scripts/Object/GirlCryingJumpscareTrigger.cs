@@ -12,7 +12,7 @@ public class GirlCryingJumpscareTrigger : MonoBehaviour
     {
         foreach (var mat in mats)
         {
-            mat.DOFloat(1.5f, "_Alpha", 5f);
+            mat.DOFloat(1.01f, "_Alpha", 5f);
         }
         
         _girlGhostJumpScare.SetActive(true);

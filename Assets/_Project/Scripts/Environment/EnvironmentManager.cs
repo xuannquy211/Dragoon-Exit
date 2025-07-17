@@ -387,6 +387,18 @@ public class EnvironmentManager : MonoBehaviour
         GameplayUIManager.Instance.CloseEye(ResetEnvironment);
     }
 
+    public void EndGame()
+    {
+        GameManager.State = GameState.PAUSED;
+        if (!UserData.IsFirstTime) CurrentWaveIndex = 0;
+
+        GameplayUIManager.Instance.ShowCreditPopup(() =>
+        {
+
+            GameplayUIManager.Instance.CloseEye(ResetEnvironment);
+        });
+    }
+
     private void ResetEnvironment()
     {
         if (_destination) _destination.gameObject.SetActive(false);
@@ -398,6 +410,7 @@ public class EnvironmentManager : MonoBehaviour
             env.ReInit();
         }
 
+        playerManager.CameraBobbing.enabled = true;
         playerManager.MainCamera.transform.localPosition = Vector3.zero;
         playerManager.MainCamera.transform.localRotation = Quaternion.identity;
         playerManager.CameraHolder.transform.localPosition = new Vector3(0f ,2f, 0f);
@@ -409,6 +422,7 @@ public class EnvironmentManager : MonoBehaviour
         
         playerManager.CameraBobbing.enabled = true;
 
+        foreach (var environment in _environments) environment.gameObject.SetActive(true);
         GameManager.State = GameState.PLAYING;
 
         if (UserData.IsFirstTime) return;

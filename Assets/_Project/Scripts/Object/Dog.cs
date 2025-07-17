@@ -7,8 +7,6 @@ public class Dog : InteractiveObject
     
     public override void Activate()
     {
-        source.Stop();
-        
         var clip = clips[Random.Range(0, clips.Length)];
         source.PlayOneShot(clip);
     }
