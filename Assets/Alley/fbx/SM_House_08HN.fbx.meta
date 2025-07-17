@@ -13,7 +13,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: M_Bags_Gate1
-    second: {fileID: 2100000, guid: bbb8133ffa46256478be066b0fe75ca2, type: 2}
+    second: {fileID: 2100000, guid: 8635dbf78f4c05442a4661ee0a9b95e1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
