@@ -23,7 +23,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: House3HN_map2
-    second: {fileID: 2100000, guid: 5000ee73821b0d04484a8441e7a10e5d, type: 2}
+    second: {fileID: 2100000, guid: 2afa54e527177344ab5482d34b2f0ed4, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -34,6 +34,21 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: House3HN_map4
     second: {fileID: 2100000, guid: 5000ee73821b0d04484a8441e7a10e5d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Wall_04
+    second: {fileID: 2100000, guid: 29e2342a1fdc8f14db64e947c40908e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Wall_05
+    second: {fileID: 2100000, guid: 29e2342a1fdc8f14db64e947c40908e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Wall_06
+    second: {fileID: 2100000, guid: 29e2342a1fdc8f14db64e947c40908e4, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -97,7 +112,7 @@ ModelImporter:
     secondaryUVMinLightmapResolution: 40
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
-    useFileScale: 1
+    useFileScale: 0
     strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60

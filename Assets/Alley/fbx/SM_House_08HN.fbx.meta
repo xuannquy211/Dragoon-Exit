@@ -7,6 +7,26 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: M_Bags_Gate
+    second: {fileID: 2100000, guid: bbb8133ffa46256478be066b0fe75ca2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Bags_Gate1
+    second: {fileID: 2100000, guid: bbb8133ffa46256478be066b0fe75ca2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Floor
+    second: {fileID: 2100000, guid: bfda221d977444b4d9d1b58a990ae6c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Floor1
+    second: {fileID: 2100000, guid: bfda221d977444b4d9d1b58a990ae6c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: M_FloorTile
     second: {fileID: 2100000, guid: 8aa5afb248de41049a8a918b0ba17d98, type: 2}
   - first:
@@ -18,6 +38,16 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: M_Wall_01b1
+    second: {fileID: 2100000, guid: cdd0ee2a295a6e74b990fedd5fe1ceeb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Wall_04
+    second: {fileID: 2100000, guid: 29e2342a1fdc8f14db64e947c40908e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Wall_06
     second: {fileID: 2100000, guid: 29e2342a1fdc8f14db64e947c40908e4, type: 2}
   materials:
     materialImportMode: 2
