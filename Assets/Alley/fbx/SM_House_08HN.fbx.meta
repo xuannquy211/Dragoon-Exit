@@ -12,7 +12,17 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: M_Bags_Gate1
+    second: {fileID: 2100000, guid: bbb8133ffa46256478be066b0fe75ca2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: M_Floor
+    second: {fileID: 2100000, guid: bfda221d977444b4d9d1b58a990ae6c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Floor1
     second: {fileID: 2100000, guid: bfda221d977444b4d9d1b58a990ae6c6, type: 2}
   - first:
       type: UnityEngine:Material
@@ -33,6 +43,11 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: M_Wall_04
+    second: {fileID: 2100000, guid: 29e2342a1fdc8f14db64e947c40908e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Wall_06
     second: {fileID: 2100000, guid: 29e2342a1fdc8f14db64e947c40908e4, type: 2}
   materials:
     materialImportMode: 2
@@ -67,7 +82,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 3
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importPhysicalCameras: 1

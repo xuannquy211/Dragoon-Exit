@@ -23,7 +23,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: House3HN_map2
-    second: {fileID: 2100000, guid: 5000ee73821b0d04484a8441e7a10e5d, type: 2}
+    second: {fileID: 2100000, guid: 9c6ba3032d46c0e49afd5850d4a625db, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -34,6 +34,46 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: House3HN_map4
     second: {fileID: 2100000, guid: 5000ee73821b0d04484a8441e7a10e5d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Gate_02_alpha
+    second: {fileID: 2100000, guid: 8635dbf78f4c05442a4661ee0a9b95e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_House3HN
+    second: {fileID: 2100000, guid: 9c6ba3032d46c0e49afd5850d4a625db, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_House3HN1
+    second: {fileID: 2100000, guid: 9c6ba3032d46c0e49afd5850d4a625db, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_House3HN_Alpha
+    second: {fileID: 2100000, guid: 8635dbf78f4c05442a4661ee0a9b95e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_House3HN_Alpha1
+    second: {fileID: 2100000, guid: 8635dbf78f4c05442a4661ee0a9b95e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Wall_04
+    second: {fileID: 2100000, guid: 29e2342a1fdc8f14db64e947c40908e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Wall_04a
+    second: {fileID: 2100000, guid: 6a819430f27f41847bf2d04ca7d96e15, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Wall_05
+    second: {fileID: 2100000, guid: 29e2342a1fdc8f14db64e947c40908e4, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -72,7 +112,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 3
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importPhysicalCameras: 1

@@ -22,12 +22,27 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: M_Wall_07
+    second: {fileID: 2100000, guid: abdbec944fc9451489aeb4efa561d07e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Wall_A
+    second: {fileID: 2100000, guid: b51119361aa1afe4aa694698557dfdc5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: M_houseHN1_01
     second: {fileID: 2100000, guid: 7f851294193c4f046bc35794322eb03c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: M_houseHN1_01_Alpha
+    second: {fileID: 2100000, guid: 0c3ca483101f83c42bea2cebe12ee6d1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_houseHN1_02
     second: {fileID: 2100000, guid: 0c3ca483101f83c42bea2cebe12ee6d1, type: 2}
   materials:
     materialImportMode: 2
@@ -62,7 +77,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 3
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importPhysicalCameras: 1
