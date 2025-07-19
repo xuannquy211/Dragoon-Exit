@@ -13,6 +13,7 @@ public class EnvironmentController : MonoBehaviour
     [SerializeField] private Transform girl, girlStartPoint;
     [SerializeField] private GirlController girlController;
     [SerializeField] private GameObject[] numbers;
+    [SerializeField] private GameObject textTut;
 
     [Space(10)] [Header("========== Abnormalities ==========")] [SerializeField]
     private Abnormality[] abnormalities;
@@ -26,6 +27,11 @@ public class EnvironmentController : MonoBehaviour
     private void Start()
     {
         GameSignal.ADD_ABNORMALITY.AddListener(OnAddAbnormalityUsed);
+    }
+
+    public void ActiveTextTut(bool active)
+    {
+        textTut.SetActive(active);
     }
 
     public void InitAbnormality(List<int> abnormalitiesUsed)

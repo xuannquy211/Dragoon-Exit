@@ -65,7 +65,43 @@ public class UserData : DataPref<UserData>
     private const string RateSpecialAbnormalityKey = "RateSpecialAbnormality";
     public static float RateSpecialAbnormality
     {
-        get => PlayerPrefs.GetFloat(RateSpecialAbnormalityKey, 0f);
+        get => PlayerPrefs.GetFloat(RateSpecialAbnormalityKey, 0.8f);
         set => PlayerPrefs.SetFloat(RateSpecialAbnormalityKey, value);
+    }
+    
+    private const string GraphicOptionKey = "GraphicOption";
+
+    public static int GraphicOption
+    {
+        get => PlayerPrefs.GetInt(GraphicOptionKey, 2);
+        set
+        {
+            PlayerPrefs.SetInt(GraphicOptionKey, value);
+            Observer.Notify("Graphic");
+        }
+    }
+
+    private const string FOVKey = "FOV";
+
+    public static float FOV
+    {
+        get => PlayerPrefs.GetFloat(FOVKey, 0f);
+        set
+        {
+            PlayerPrefs.SetFloat(FOVKey, value);
+            Observer.Notify("FOV");
+        }
+    }
+
+    private const string SoundKey = "Sound";
+
+    public static bool SoundEnabled
+    {
+        get => PlayerPrefs.GetInt(SoundKey, 1) > 0;
+        set
+        {
+            PlayerPrefs.SetInt(SoundKey, value ? 1 : 0);
+            Observer.Notify("Sound");
+        }
     }
 }

@@ -5,8 +5,12 @@ using UnityEngine.UI;
 
 public class PausePopup : MonoBehaviour
 {
-    [SerializeField] private Image panel;
+    [SerializeField] private CanvasGroup panel;
     [SerializeField] private Button resumeButton, settingsButton, restartButton;
+    [SerializeField] private Button lowButton, mediumButton, highButton;
+    [SerializeField] private GameObject[] onGraphicOption, offGraphicOption;
+    [SerializeField] private Slider fovSlider;
+    [SerializeField] private Toggle soundToggle;
 
     private readonly float _anchorXTarget = 361f;
     private Sequence _sequence;
@@ -14,20 +18,37 @@ public class PausePopup : MonoBehaviour
     private void OnEnable()
     {
         ClearSequence();
-
-        ((RectTransform)resumeButton.transform).anchoredPosition = new Vector3(-_anchorXTarget, 75.95001f, 0f);
-        ((RectTransform)settingsButton.transform).anchoredPosition = new Vector3(-_anchorXTarget, 0f, 0f);
-        ((RectTransform)restartButton.transform).anchoredPosition = new Vector3(-_anchorXTarget, -75.95001f, 0f);
         
         _sequence = DOTween.Sequence();
         _sequence.SetUpdate(true);
         _sequence.Append(panel.DOFade(1f, 0.5f).From(0f));
-        _sequence.Append((resumeButton.transform as RectTransform).DOAnchorPosX(_anchorXTarget, 0.25f)
-            .From(new Vector3(-_anchorXTarget, 75.95001f, 0f)).SetEase(Ease.OutBack));
-        _sequence.Join((settingsButton.transform as RectTransform).DOAnchorPosX(_anchorXTarget, 0.35f)
-            .From(new Vector3(-_anchorXTarget, 0f, 0f)).SetEase(Ease.OutBack));
-        _sequence.Join((restartButton.transform as RectTransform).DOAnchorPosX(_anchorXTarget, 0.45f)
-            .From(new Vector3(-_anchorXTarget, -75.95001f, 0f)).SetEase(Ease.OutBack));
+
+        UpdateGraphicOption();
+        UpdateFOVOption();
+        UpdateSoundToggle();
+    }
+
+    private void UpdateGraphicOption()
+    {
+        var currentOption = UserData.GraphicOption;
+        
+        for (var i = 0; i < onGraphicOption.Length; i++)
+        {
+            onGraphicOption[i].SetActive(i == currentOption);
+            offGraphicOption[i].SetActive(i != currentOption);
+        }
+    }
+
+    private void UpdateFOVOption()
+    {
+        var currentFOV = UserData.FOV;
+        fovSlider.value = currentFOV;
+    }
+
+    private void UpdateSoundToggle()
+    {
+        var isSoundEnable = UserData.SoundEnabled;
+        soundToggle.isOn = isSoundEnable;
     }
 
     private void Start()
@@ -35,8 +56,31 @@ public class PausePopup : MonoBehaviour
         resumeButton.onClick.AddListener(OnClickResume);
         settingsButton.onClick.AddListener(OnClickSettings);
         restartButton.onClick.AddListener(OnClickRestart);
+        
+        lowButton.onClick.AddListener(() => OnClickGraphicOption(0));
+        mediumButton.onClick.AddListener(() => OnClickGraphicOption(1));
+        highButton.onClick.AddListener(() => OnClickGraphicOption(2));
+
+        fovSlider.onValueChanged.AddListener(OnFOVChange);
+        soundToggle.onValueChanged.AddListener(OnSoundChange);
     }
 
+    private void OnFOVChange(float value)
+    {
+        UserData.FOV = value;
+    }
+
+    private void OnSoundChange(bool value)
+    {
+        UserData.SoundEnabled = value;
+    }
+
+    private void OnClickGraphicOption(int option)
+    {
+        UserData.GraphicOption = option;
+        UpdateGraphicOption();
+    }
+    
     private void OnClickResume()
     {
         Hide(() => Time.timeScale = 1f);

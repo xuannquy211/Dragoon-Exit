@@ -12,9 +12,9 @@ public class GirlHuntingAbnormality : Abnormality
     [SerializeField] private Transform endPoint;
     [SerializeField] private GameObject trigger;
     [SerializeField] private GameObject normalTrigger;
-    
+
     private bool _isActive;
-    
+
     [Button]
     public override void Active()
     {
@@ -28,21 +28,18 @@ public class GirlHuntingAbnormality : Abnormality
 
     public override void Deactive()
     {
-        if (_isActive)
-        {
-            agent.enabled = false;
-            girlController.enabled = true;
-            _isActive = false;
-            girlController.SetAnim("Idle");
-            trigger.SetActive(false);
-            normalTrigger.SetActive(true);
-        }
+        agent.enabled = false;
+        girlController.enabled = true;
+        _isActive = false;
+        girlController.SetAnim("Idle");
+        trigger.SetActive(false);
+        normalTrigger.SetActive(true);
     }
 
     public void Begin()
     {
         girlController.SetAnim("Walking");
-        transform.DOMove(endPoint.position, 3f).SetEase(Ease.Linear).OnComplete(() =>
+        transform.DOMove(endPoint.position, 2f).SetEase(Ease.Linear).OnComplete(() =>
         {
             transform.forward = EnvironmentManager.Instance.GetPlayerPosition() - transform.position;
             agent.enabled = true;

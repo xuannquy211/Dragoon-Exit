@@ -20,6 +20,6 @@ public abstract class InteractiveObject : MonoBehaviour
 
     private void OnDisable()
     {
-        if (InteractiveObjects[_collider].Contains(this)) InteractiveObjects[_collider].Remove(this);
+        if (InteractiveObjects.ContainsKey(_collider) && InteractiveObjects[_collider].Contains(this)) InteractiveObjects[_collider].Remove(this);
     }
 }

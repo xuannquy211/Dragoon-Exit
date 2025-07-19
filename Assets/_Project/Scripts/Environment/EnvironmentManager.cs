@@ -44,9 +44,19 @@ public class EnvironmentManager : MonoBehaviour
     private void Start()
     {
         FirstInitEnvironment();
-        if (!UserData.IsFirstTime) RandomAbnormality();
+        if (!UserData.IsFirstTime)
+        {
+            _environments[0].ActiveTextTut(true);
+            _environments[1].ActiveTextTut(true);
+            _environments[2].ActiveTextTut(true);
+            RandomAbnormality();
+        }
         else
         {
+            _environments[0].ActiveTextTut(false);
+            _environments[1].ActiveTextTut(false);
+            _environments[2].ActiveTextTut(false);
+            
             _environments[0].ClearAbnormalities();
             _environments[1].ClearAbnormalities();
             _environments[2].ClearAbnormalities();
@@ -334,6 +344,10 @@ public class EnvironmentManager : MonoBehaviour
 
     private void RandomAbnormality()
     {
+        _environments[0].ActiveTextTut(true);
+        _environments[1].ActiveTextTut(true);
+        _environments[2].ActiveTextTut(true);
+        
         var centerEnvironment = GetCenterEnvironment();
         _isHavingAbnormality = Random.value < 0.5f;
         if (_isHavingAbnormality)
